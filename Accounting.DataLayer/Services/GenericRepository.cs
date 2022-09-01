@@ -1,18 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Data.Entity;
 using System.Linq.Expressions;
 
 namespace Accounting.DataLayer.Services
 {
-    //public
     public class GenericRepository<TEntity> where TEntity:class
     {
         private Accounting_DBEntities _db;
-        //tables
         private DbSet<TEntity> _dbset;
 
         public GenericRepository(Accounting_DBEntities db)
@@ -21,11 +17,8 @@ namespace Accounting.DataLayer.Services
             _dbset = _db.Set<TEntity>();
         }
 
-        //ienumerable is interface for all generic list
-        //میتواند به تمام فرزندانش تغییر قیافه دهد
         public virtual IEnumerable<TEntity> Get(Expression<Func<TEntity, bool>> where = null)
         {
-            //lasy query
             IQueryable<TEntity> query = _dbset;
             if(where != null)
             {
@@ -34,13 +27,11 @@ namespace Accounting.DataLayer.Services
             return query.ToList();
         }
         
-        //object is paret of all dataType
         public virtual TEntity GetById(object Id)
         {
             return _dbset.Find(Id);
         }
 
-        //virtual = override کردن = تغییر رفتار
         public virtual void Insert(TEntity entity)
         {
             _dbset.Add(entity);

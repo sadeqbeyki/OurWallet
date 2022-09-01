@@ -1,7 +1,6 @@
 ﻿#pragma warning disable 0618
 using System.Runtime.InteropServices;
 using System.Text;
-using System.Windows;
 
 namespace System.Windows.Forms
 {

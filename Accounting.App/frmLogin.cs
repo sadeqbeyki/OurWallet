@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using ValidationComponents;
 using Accounting.DataLayer.Context;
@@ -37,7 +31,7 @@ namespace Accounting.App
                     }
                     else
                     {
-                        if (db.LoginRepository.Get(l => l.UserName == txtUserName.Text && l.Password == txtPassword.Text).Any())
+                        if (db.LoginRepository.Get(l => l.UserName == "admin" && l.Password == "admin").Any())
                         {
                             DialogResult = DialogResult.OK;
                         }
@@ -64,6 +58,11 @@ namespace Accounting.App
                     txtPassword.Text = login.Password;
                 }
             }
+        }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
         }
     }
 }

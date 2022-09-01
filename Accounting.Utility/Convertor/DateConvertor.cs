@@ -1,13 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Globalization;
 
 namespace Accounting.Utility.Convertor
 {
-    //class and methode shoud be public  and static
     public static class DateConvertor
     {
         public static string ToShamsi(this DateTime value)
@@ -17,7 +12,7 @@ namespace Accounting.Utility.Convertor
         }
         public static DateTime ToMiladi(DateTime dateTime)
         {
-            return new DateTime(dateTime.Year, dateTime.Month, dateTime.Day, new System.Globalization.PersianCalendar());
+            return new DateTime(dateTime.Year, dateTime.Month, dateTime.Day, new PersianCalendar());
         }
     }
 }

@@ -1,19 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Accounting.DataLayer.Repositories;
 using Accounting.DataLayer.Services;
 
 namespace Accounting.DataLayer.Context
 {
-    //public | خروج از حافظه با اینترفیس فوق
     public class UnitOfWork : IDisposable
     {
         Accounting_DBEntities db = new Accounting_DBEntities();
 
-        //Interface
         private ICustomerRepository _customerRepository;
 
         public ICustomerRepository CustomerRepository 
@@ -29,13 +23,11 @@ namespace Accounting.DataLayer.Context
             }
         }
 
-        //generic
         private GenericRepository<Accounting> _accountingRepository;
         public GenericRepository<Accounting> AccuntingRepository 
         { 
             get 
             { 
-                //null mean is = no create instanse from this repository
                 if(_accountingRepository == null)
                 {
                     _accountingRepository = new GenericRepository<Accounting>(db);

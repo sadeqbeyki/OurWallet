@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Accounting.DataLayer.Repositories;
 using System.Data.Entity;
 using Accounting.ViewModels;
@@ -12,16 +9,12 @@ namespace Accounting.DataLayer.Services
 {
     public class CustomerRepository : ICustomerRepository
     {
-        // Accounting_DBEntities context
-        //Accounting_DBEntities db = new Accounting_DBEntities();
         private Accounting_DBEntities db;
         public CustomerRepository(Accounting_DBEntities context)
         {
             db = context;
         }
 
-        //remember: you should use return to recive reply
-        //متدی از نوع لیست تعریف و  قوانین و دستورات رو ایجاد میکنیم
         public List<Customers> GetAllCustomers()
         {
             return db.Customers.ToList();
@@ -46,9 +39,6 @@ namespace Accounting.DataLayer.Services
         }
         public bool UpdateCustomer(Customers customer)
         {
-            //try
-            //{
-            //به جای یوزینگ از این روش بهره میبریم تا ارتباط کانتکست رو قطع کنیم و به ویرایش بسپریم
             var local = db.Set<Customers>()
                          .Local
                          .FirstOrDefault(f => f.CustomerID == customer.CustomerID);
@@ -58,11 +48,6 @@ namespace Accounting.DataLayer.Services
             }
             db.Entry(customer).State = EntityState.Modified;
             return true;
-            //    }
-            //    catch
-            //    {
-            //        return false;
-            //    }
         }
 
         public bool DeleteCustomer(Customers customer)
@@ -83,7 +68,6 @@ namespace Accounting.DataLayer.Services
         {
             try
             {
-                //var or Customers
                 var customer = GetCustomersById(customerId);
                 DeleteCustomer(customer);
                 return true;
