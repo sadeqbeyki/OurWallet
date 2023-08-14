@@ -1,11 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Accounting.DataLayer.Context;
 using Accounting.Utility.Convertor;
@@ -147,7 +143,7 @@ namespace Accounting.App
                 );
             }
             stiPrint.Load(Application.StartupPath + "/Report.mrt");
-            stiPrint.RegData("DT", dtPrint);
+            stiPrint.RegData("OLE DB", dtPrint);
             stiPrint.Show();
         }
     }

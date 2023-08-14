@@ -31,7 +31,7 @@ namespace Accounting.App
                     }
                     else
                     {
-                        if (db.LoginRepository.Get(l => l.UserName == "admin" && l.Password == "admin").Any())
+                        if (db.LoginRepository.Get(l => l.UserName == txtUserName.Text && l.Password == txtPassword.Text).Any())
                         {
                             DialogResult = DialogResult.OK;
                         }
@@ -47,7 +47,7 @@ namespace Accounting.App
 
         private void frmLogin_Load(object sender, EventArgs e)
         {
-            if (isEdit) //(isEdit=true)
+            if (isEdit)
             {
                 this.Text = "تنظیمات ورود به برنامه";
                 btnLogin.Text = "تغییر رمز";
@@ -60,9 +60,5 @@ namespace Accounting.App
             }
         }
 
-        private void groupBox1_Enter(object sender, EventArgs e)
-        {
-
-        }
     }
 }

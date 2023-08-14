@@ -249,6 +249,8 @@ namespace Accounting.App
             // 
             this.stiPrint.CookieContainer = null;
             this.stiPrint.EngineVersion = Stimulsoft.Report.Engine.StiEngineVersion.EngineV2;
+            this.stiPrint.HttpHeadersContainer = null;
+            this.stiPrint.Key = "1338951561534b2cb49f2f1ab027cdc4";
             this.stiPrint.ReferencedAssemblies = new string[] {
         "System.Dll",
         "System.Drawing.Dll",
@@ -259,7 +261,7 @@ namespace Accounting.App
         "Stimulsoft.Base.Dll",
         "Stimulsoft.Report.Dll"};
             this.stiPrint.ReportAlias = "Report";
-            this.stiPrint.ReportGuid = "45953dccbf0d4a15b4b4fd6517a465d1";
+            this.stiPrint.ReportGuid = "2c4b824b32a447b3bc8a35f0bae17e59";
             this.stiPrint.ReportName = "Report";
             this.stiPrint.ReportSource = null;
             this.stiPrint.ReportUnit = Stimulsoft.Report.StiReportUnitType.Inches;

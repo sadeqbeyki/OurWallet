@@ -30,6 +30,10 @@ namespace Accounting.App
         private void InitializeComponent()
         {
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.btnAddNewCustomer = new System.Windows.Forms.ToolStripButton();
+            this.btnEditCustomer = new System.Windows.Forms.ToolStripButton();
+            this.btnDeleteCustomer = new System.Windows.Forms.ToolStripButton();
+            this.btnRefresh = new System.Windows.Forms.ToolStripButton();
             this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
             this.txtFilter = new System.Windows.Forms.ToolStripTextBox();
             this.dgvCustomers = new System.Windows.Forms.DataGridView();
@@ -37,10 +41,6 @@ namespace Accounting.App
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btnAddNewCustomer = new System.Windows.Forms.ToolStripButton();
-            this.btnEditCustomer = new System.Windows.Forms.ToolStripButton();
-            this.btnDeleteCustomer = new System.Windows.Forms.ToolStripButton();
-            this.btnRefresh = new System.Windows.Forms.ToolStripButton();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCustomers)).BeginInit();
             this.SuspendLayout();
@@ -56,70 +56,9 @@ namespace Accounting.App
             this.txtFilter});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(584, 62);
+            this.toolStrip1.Size = new System.Drawing.Size(826, 62);
             this.toolStrip1.TabIndex = 0;
             this.toolStrip1.Text = "toolStrip1";
-            // 
-            // toolStripLabel1
-            // 
-            this.toolStripLabel1.Name = "toolStripLabel1";
-            this.toolStripLabel1.Size = new System.Drawing.Size(41, 59);
-            this.toolStripLabel1.Text = "جستجو";
-            // 
-            // txtFilter
-            // 
-            this.txtFilter.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.txtFilter.Name = "txtFilter";
-            this.txtFilter.Size = new System.Drawing.Size(100, 62);
-            this.txtFilter.TextChanged += new System.EventHandler(this.Filter_TextChanged);
-            // 
-            // dgvCustomers
-            // 
-            this.dgvCustomers.AllowUserToAddRows = false;
-            this.dgvCustomers.AllowUserToDeleteRows = false;
-            this.dgvCustomers.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dgvCustomers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvCustomers.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.CustomerID,
-            this.Column1,
-            this.Column2,
-            this.Column3});
-            this.dgvCustomers.Cursor = System.Windows.Forms.Cursors.Default;
-            this.dgvCustomers.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvCustomers.Location = new System.Drawing.Point(0, 62);
-            this.dgvCustomers.Name = "dgvCustomers";
-            this.dgvCustomers.ReadOnly = true;
-            this.dgvCustomers.Size = new System.Drawing.Size(584, 299);
-            this.dgvCustomers.TabIndex = 1;
-            // 
-            // CustomerID
-            // 
-            this.CustomerID.DataPropertyName = "CustomerID";
-            this.CustomerID.HeaderText = "Column1";
-            this.CustomerID.Name = "CustomerID";
-            this.CustomerID.ReadOnly = true;
-            this.CustomerID.Visible = false;
-            // 
-            // Column1
-            // 
-            this.Column1.DataPropertyName = "FullName";
-            this.Column1.HeaderText = "نام";
-            this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
-            // 
-            // Column2
-            // 
-            this.Column2.DataPropertyName = "Mobile";
-            this.Column2.HeaderText = "موبایل";
-            this.Column2.Name = "Column2";
-            this.Column2.ReadOnly = true;
-            // 
-            // Column3
-            // 
-            this.Column3.DataPropertyName = "Email";
-            this.Column3.HeaderText = "ایمیل";
-            this.Column3.Name = "Column3";
-            this.Column3.ReadOnly = true;
             // 
             // btnAddNewCustomer
             // 
@@ -165,11 +104,72 @@ namespace Accounting.App
             this.btnRefresh.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
             // 
+            // toolStripLabel1
+            // 
+            this.toolStripLabel1.Name = "toolStripLabel1";
+            this.toolStripLabel1.Size = new System.Drawing.Size(41, 59);
+            this.toolStripLabel1.Text = "جستجو";
+            // 
+            // txtFilter
+            // 
+            this.txtFilter.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.txtFilter.Name = "txtFilter";
+            this.txtFilter.Size = new System.Drawing.Size(100, 62);
+            this.txtFilter.TextChanged += new System.EventHandler(this.Filter_TextChanged);
+            // 
+            // dgvCustomers
+            // 
+            this.dgvCustomers.AllowUserToAddRows = false;
+            this.dgvCustomers.AllowUserToDeleteRows = false;
+            this.dgvCustomers.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvCustomers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvCustomers.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.CustomerID,
+            this.Column1,
+            this.Column2,
+            this.Column3});
+            this.dgvCustomers.Cursor = System.Windows.Forms.Cursors.Default;
+            this.dgvCustomers.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvCustomers.Location = new System.Drawing.Point(0, 62);
+            this.dgvCustomers.Name = "dgvCustomers";
+            this.dgvCustomers.ReadOnly = true;
+            this.dgvCustomers.Size = new System.Drawing.Size(826, 299);
+            this.dgvCustomers.TabIndex = 1;
+            // 
+            // CustomerID
+            // 
+            this.CustomerID.DataPropertyName = "CustomerID";
+            this.CustomerID.HeaderText = "Column1";
+            this.CustomerID.Name = "CustomerID";
+            this.CustomerID.ReadOnly = true;
+            this.CustomerID.Visible = false;
+            // 
+            // Column1
+            // 
+            this.Column1.DataPropertyName = "FullName";
+            this.Column1.HeaderText = "نام";
+            this.Column1.Name = "Column1";
+            this.Column1.ReadOnly = true;
+            // 
+            // Column2
+            // 
+            this.Column2.DataPropertyName = "Mobile";
+            this.Column2.HeaderText = "موبایل";
+            this.Column2.Name = "Column2";
+            this.Column2.ReadOnly = true;
+            // 
+            // Column3
+            // 
+            this.Column3.DataPropertyName = "Email";
+            this.Column3.HeaderText = "ایمیل";
+            this.Column3.Name = "Column3";
+            this.Column3.ReadOnly = true;
+            // 
             // frmCustomers
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(584, 361);
+            this.ClientSize = new System.Drawing.Size(826, 361);
             this.Controls.Add(this.dgvCustomers);
             this.Controls.Add(this.toolStrip1);
             this.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));

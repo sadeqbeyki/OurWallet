@@ -37,8 +37,8 @@ namespace Accounting.App
             this.label1 = new System.Windows.Forms.Label();
             this.txtUserName = new System.Windows.Forms.TextBox();
             this.btnLogin = new System.Windows.Forms.Button();
-            this.requiredFieldValidator1 = new ValidationComponents.RequiredFieldValidator(this.components);
-            this.requiredFieldValidator2 = new ValidationComponents.RequiredFieldValidator(this.components);
+            this.userValidator = new ValidationComponents.RequiredFieldValidator(this.components);
+            this.passValidator = new ValidationComponents.RequiredFieldValidator(this.components);
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -54,7 +54,6 @@ namespace Accounting.App
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "فرم ورود";
-            this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
             // label2
             // 
@@ -99,19 +98,19 @@ namespace Accounting.App
             this.btnLogin.UseVisualStyleBackColor = true;
             this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
             // 
-            // requiredFieldValidator1
+            // userValidator
             // 
-            this.requiredFieldValidator1.CancelFocusChangeWhenInvalid = false;
-            this.requiredFieldValidator1.ControlToValidate = this.txtUserName;
-            this.requiredFieldValidator1.ErrorMessage = "ناک کاربری را وارد کنید";
-            this.requiredFieldValidator1.Icon = ((System.Drawing.Icon)(resources.GetObject("requiredFieldValidator1.Icon")));
+            this.userValidator.CancelFocusChangeWhenInvalid = false;
+            this.userValidator.ControlToValidate = this.txtUserName;
+            this.userValidator.ErrorMessage = "نام کاربری را وارد کنید";
+            this.userValidator.Icon = ((System.Drawing.Icon)(resources.GetObject("userValidator.Icon")));
             // 
-            // requiredFieldValidator2
+            // passValidator
             // 
-            this.requiredFieldValidator2.CancelFocusChangeWhenInvalid = false;
-            this.requiredFieldValidator2.ControlToValidate = this.txtPassword;
-            this.requiredFieldValidator2.ErrorMessage = "رمز کاربر را وارد کنید";
-            this.requiredFieldValidator2.Icon = ((System.Drawing.Icon)(resources.GetObject("requiredFieldValidator2.Icon")));
+            this.passValidator.CancelFocusChangeWhenInvalid = false;
+            this.passValidator.ControlToValidate = this.txtPassword;
+            this.passValidator.ErrorMessage = "رمز کاربر را وارد کنید";
+            this.passValidator.Icon = ((System.Drawing.Icon)(resources.GetObject("passValidator.Icon")));
             // 
             // frmLogin
             // 
@@ -141,7 +140,7 @@ namespace Accounting.App
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtUserName;
         private System.Windows.Forms.Button btnLogin;
-        private ValidationComponents.RequiredFieldValidator requiredFieldValidator1;
-        private ValidationComponents.RequiredFieldValidator requiredFieldValidator2;
+        private ValidationComponents.RequiredFieldValidator userValidator;
+        private ValidationComponents.RequiredFieldValidator passValidator;
     }
 }
