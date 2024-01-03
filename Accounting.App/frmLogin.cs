@@ -9,6 +9,8 @@ namespace Accounting.App
     public partial class frmLogin : Form
     {
         public bool isEdit = false;
+        private readonly UnitOfWork _unitOfWork;
+
         public frmLogin()
         {
             InitializeComponent();
@@ -18,7 +20,7 @@ namespace Accounting.App
         {
             if (BaseValidator.IsFormValid(this.components))
             {
-                using(UnitOfWork db = new UnitOfWork())
+                using (UnitOfWork db = new UnitOfWork())
                 {
                     if (isEdit)
                     {
@@ -44,6 +46,8 @@ namespace Accounting.App
                 }
             }
         }
+
+
 
         private void frmLogin_Load(object sender, EventArgs e)
         {

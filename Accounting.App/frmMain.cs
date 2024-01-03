@@ -41,20 +41,20 @@ namespace Accounting.App
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
-            this.Hide();
-            frmLogin frmLogin = new frmLogin();
-            if (frmLogin.ShowDialog() == DialogResult.OK)
-            {
-                lblDate.Text = DateConvertor.ToShamsi(DateTime.Now);
-                lblTime.Text = DateTime.Now.ToString("HH:mm:ss");
-                this.Show();
-                Report();
-            }
-            else
-            {
-                Application.Exit();
-            }
+            this.Show();
+            //this.Hide();
+            //frmLogin frmLogin = new frmLogin();
+            //if (frmLogin.ShowDialog() == DialogResult.OK)
+            //{
+            //    lblDate.Text = DateConvertor.ToShamsi(DateTime.Now);
+            //    lblTime.Text = DateTime.Now.ToString("HH:mm:ss");
+            //    this.Show();
+            //    Report();
+            //}
+            //else
+            //{
+            //    Application.Exit();
+            //}
         }
 
         void Report()

@@ -9,7 +9,6 @@ namespace Accounting.DataLayer.Context
         Accounting_DBEntities db = new Accounting_DBEntities();
 
         private ICustomerRepository _customerRepository;
-
         public ICustomerRepository CustomerRepository 
         {
             get

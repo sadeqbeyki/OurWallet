@@ -19,12 +19,10 @@ namespace Accounting.DataLayer.Services
         {
             return db.Customers.ToList();
         }
-
         public Customers GetCustomersById(int customerId)
         {
             return db.Customers.Find(customerId);
         }
-
         public bool InsertCustomer(Customers customer)
         {
             try
@@ -49,7 +47,6 @@ namespace Accounting.DataLayer.Services
             db.Entry(customer).State = EntityState.Modified;
             return true;
         }
-
         public bool DeleteCustomer(Customers customer)
         {
             try
@@ -63,7 +60,6 @@ namespace Accounting.DataLayer.Services
             }
 
         }
-
         public bool DeleteCustomer(int customerId)
         {
             try
@@ -81,7 +77,6 @@ namespace Accounting.DataLayer.Services
         {
             return db.Customers.Where(c => c.FullName.Contains(parameter) || c.Email.Contains(parameter) || c.Mobile.Contains(parameter)).ToList();
         }
-
         public List<ListCustomerViewModel> GetNameCustomers(string filter = "")
         {
             if (filter == "")
@@ -98,12 +93,10 @@ namespace Accounting.DataLayer.Services
                 FullName = c.FullName
             }).ToList();
         }
-
         public int GetCustomerIdByName(string name)
         {
             return db.Customers.First(c => c.FullName == name).CustomerID;
         }
-
         public string GetCustomerNameById(int customerId)
         {
             return db.Customers.Find(customerId).FullName;
