@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Wallet.Domain.Entities;
 
-namespace Wallet.Persistance;
+namespace Wallet.Persistance.Common;
 
 public class WalletDbContext : DbContext
 {
@@ -9,5 +9,5 @@ public class WalletDbContext : DbContext
     {
     }
 
-    public DbSet<Member> Members { get; set; }
+    public DbSet<Customer> Customers { get; set; }
 }

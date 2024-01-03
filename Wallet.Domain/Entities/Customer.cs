@@ -2,7 +2,7 @@
 
 namespace Wallet.Domain.Entities
 {
-    public class Member : BaseEntity<Guid>
+    public class Customer : BaseEntity<Guid>
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }

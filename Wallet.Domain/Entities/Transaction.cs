@@ -2,7 +2,7 @@
 
 namespace Wallet.Domain.Entities
 {
-    public class Transaction : BaseEntity<int>
+    public class Transaction : BaseEntity<Guid>
     {
         public Guid CustomerId { get; set; }
         public Guid TypeId { get; set; }
