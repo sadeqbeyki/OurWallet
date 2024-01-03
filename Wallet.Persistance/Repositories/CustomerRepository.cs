@@ -19,7 +19,7 @@ namespace Wallet.Persistance.Repositories
         {
             return _dbContext.Customers.ToList();
         }
-        public Customer GetCustomerById(int customerId)
+        public Customer GetCustomerById(Guid customerId)
         {
             return _dbContext.Customers.Find(customerId);
         }
@@ -60,7 +60,7 @@ namespace Wallet.Persistance.Repositories
             }
 
         }
-        public bool DeleteCustomer(int customerId)
+        public bool DeleteCustomer(Guid customerId)
         {
             try
             {

@@ -16,7 +16,7 @@ namespace Wallet.Persistance.Data
         }
 
         private ICustomerRepository _customerRepository;
-        public ICustomerRepository MemberRepository
+        public ICustomerRepository CustomerRepository
         {
             get
             {
