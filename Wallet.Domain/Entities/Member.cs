@@ -1,8 +1,8 @@
-﻿using Wallet.Domain.Base;
+﻿using Wallet.Domain.Entities.Base;
 
-namespace Wallet.Domain
+namespace Wallet.Domain.Entities
 {
-    public class Customers : BaseEntity<Guid>
+    public class Member : BaseEntity<Guid>
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }

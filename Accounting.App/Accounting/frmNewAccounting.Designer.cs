@@ -181,7 +181,7 @@ namespace Accounting.App
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(410, 326);
+            this.btnSave.Location = new System.Drawing.Point(410, 378);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(75, 23);
             this.btnSave.TabIndex = 10;
@@ -210,7 +210,7 @@ namespace Accounting.App
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(584, 361);
+            this.ClientSize = new System.Drawing.Size(584, 438);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.txtDescription);
             this.Controls.Add(this.txtAmount);

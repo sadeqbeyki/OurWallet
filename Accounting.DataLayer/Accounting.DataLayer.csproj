@@ -116,6 +116,10 @@
       <Project>{bac60d9d-f6e5-4b60-949e-3cd192ff0997}</Project>
       <Name>Accounting.ViewModels</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Wallet.Domain\Wallet.Domain.csproj">
+      <Project>{3aa377d6-a1a8-4e41-aa96-dad037ada1f6}</Project>
+      <Name>Wallet.Domain</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

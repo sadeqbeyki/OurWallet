@@ -1,6 +1,6 @@
-﻿using Wallet.Domain.Base;
+﻿using Wallet.Domain.Entities.Base;
 
-namespace Wallet.Domain
+namespace Wallet.Domain.Entities
 {
     public class Bank : BaseEntity<Guid>
     {
