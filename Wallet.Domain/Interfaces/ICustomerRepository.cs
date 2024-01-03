@@ -6,7 +6,7 @@ namespace Wallet.Domain.Interfaces
     {
         bool DeleteCustomer(Guid customerId);
         bool DeleteCustomer(Customer customer);
-        List<Customer> GetAllCustomer();
+        List<Customer> GetAllCustomers();
         Guid GetCustomerIdByName(string name);
         string GetCustomerNameById(Guid customerId);
         IEnumerable<Customer> GetCustomerByFilter(string parameter);

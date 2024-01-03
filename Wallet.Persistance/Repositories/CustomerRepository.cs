@@ -15,7 +15,7 @@ namespace Wallet.Persistance.Repositories
             _dbContext = dbContext;
         }
 
-        public List<Customer> GetAllCustomer()
+        public List<Customer> GetAllCustomers()
         {
             return _dbContext.Customers.ToList();
         }

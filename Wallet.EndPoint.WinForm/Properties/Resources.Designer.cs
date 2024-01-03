@@ -63,6 +63,46 @@ namespace Wallet.EndPoint.WinForm.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap _1371475930_filenew {
+            get {
+                object obj = ResourceManager.GetObject("1371475930_filenew", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap _1371475973_document_edit {
+            get {
+                object obj = ResourceManager.GetObject("1371475973_document_edit", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap _1371476007_Close_Box_Red {
+            get {
+                object obj = ResourceManager.GetObject("1371476007_Close_Box_Red", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap _1371476342_Refresh {
+            get {
+                object obj = ResourceManager.GetObject("1371476342_Refresh", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap no_profile_image {
             get {
                 object obj = ResourceManager.GetObject("no-profile-image", resourceCulture);

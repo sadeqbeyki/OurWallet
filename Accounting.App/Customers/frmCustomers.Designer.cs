@@ -41,6 +41,7 @@ namespace Accounting.App
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCustomers)).BeginInit();
             this.SuspendLayout();
@@ -127,7 +128,8 @@ namespace Accounting.App
             this.CustomerID,
             this.Column1,
             this.Column2,
-            this.Column3});
+            this.Column3,
+            this.Id});
             this.dgvCustomers.Cursor = System.Windows.Forms.Cursors.Default;
             this.dgvCustomers.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvCustomers.Location = new System.Drawing.Point(0, 62);
@@ -165,6 +167,12 @@ namespace Accounting.App
             this.Column3.Name = "Column3";
             this.Column3.ReadOnly = true;
             // 
+            // Id
+            // 
+            this.Id.HeaderText = "id";
+            this.Id.Name = "Id";
+            this.Id.ReadOnly = true;
+            // 
             // frmCustomers
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -201,5 +209,6 @@ namespace Accounting.App
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Id;
     }
 }
