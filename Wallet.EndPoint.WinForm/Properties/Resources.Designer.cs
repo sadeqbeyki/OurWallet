@@ -103,6 +103,16 @@ namespace Wallet.EndPoint.WinForm.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap narcissusDaffodilFlower {
+            get {
+                object obj = ResourceManager.GetObject("narcissusDaffodilFlower", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap no_profile_image {
             get {
                 object obj = ResourceManager.GetObject("no-profile-image", resourceCulture);

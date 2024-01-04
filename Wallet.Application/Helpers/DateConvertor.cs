@@ -2,7 +2,7 @@
 
 namespace Wallet.Application.Helpers
 {
-    public static class DateConverter
+    public static class DateConvertor
     {
         public static string ToShamsi(this DateTime value)
         {

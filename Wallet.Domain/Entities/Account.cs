@@ -3,9 +3,10 @@ using Wallet.Domain.Enum;
 
 namespace Wallet.Domain.Entities
 {
-    public class TransactionCategory : BaseEntity<int>
+    public class Account : BaseEntity<Guid>
     {
         public string Name { get; set; }
-        //public TransactionType Type { get; set; }
+        public decimal InitialBalance { get; set; }
+        public AccountType Type { get; set; }
     }
 }

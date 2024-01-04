@@ -1,18 +1,23 @@
-﻿using Wallet.Domain.Entities;
+﻿using Microsoft.EntityFrameworkCore;
+using Wallet.Domain.Entities;
+using Wallet.Domain.Entities.Base;
 using Wallet.Domain.Interfaces;
+using Wallet.Domain.Interfaces.Base;
 using Wallet.Persistance.Common;
 using Wallet.Persistance.Repositories;
 using Wallet.Persistance.Repositories.Base;
 
 namespace Wallet.Persistance.Data
 {
-    public class UnitOfWork : IDisposable
+    public class UnitOfWork : IUnitOfWork
     {
         private readonly WalletDbContext _walletDbContext;
+        private Dictionary<Type, object> _repositories;
 
         public UnitOfWork(WalletDbContext walletDbContext)
         {
             _walletDbContext = walletDbContext;
+            _repositories = new Dictionary<Type, object>();
         }
 
         private ICustomerRepository _customerRepository;
@@ -50,6 +55,17 @@ namespace Wallet.Persistance.Data
                 _loginRepository ??= new Repository<int, Login>(_walletDbContext);
                 return _loginRepository;
             }
+        }
+        public IRepository<TKey,TEntity> GetRepository<TKey, TEntity>() where TEntity : BaseEntity<TKey>
+        {
+            if (_repositories.ContainsKey(typeof(TEntity)))
+            {
+                return (IRepository<TKey, TEntity>)_repositories[typeof(TEntity)];
+            }
+
+            var repository = new Repository<TKey,TEntity>(_walletDbContext);
+            _repositories.Add(typeof(TEntity), repository);
+            return repository;
         }
         public void Save()
         {

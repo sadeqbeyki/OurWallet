@@ -4,11 +4,11 @@ using Wallet.Persistance.Data;
 
 namespace Wallet.Service
 {
-    public class Account
+    public class AccountReport
     {
         private readonly WalletDbContext _walletDbContext;
 
-        public Account(WalletDbContext walletDbContext)
+        public AccountReport(WalletDbContext walletDbContext)
         {
             _walletDbContext = walletDbContext;
         }
