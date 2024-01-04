@@ -39,12 +39,12 @@
             btnReportExpense = new ToolStripButton();
             btnReportReceive = new ToolStripButton();
             gbMonthReport = new GroupBox();
-            label1 = new Label();
-            label2 = new Label();
-            label3 = new Label();
-            lblReceive = new Label();
-            lblExpense = new Label();
             lblAccountBalance = new Label();
+            lblExpense = new Label();
+            lblReceive = new Label();
+            label3 = new Label();
+            label2 = new Label();
+            label1 = new Label();
             btnRefresh = new Button();
             statusStrip1 = new StatusStrip();
             lblTime = new ToolStripStatusLabel();
@@ -82,6 +82,7 @@
             editLoginItem.Name = "editLoginItem";
             editLoginItem.Size = new Size(180, 22);
             editLoginItem.Text = "تنظیمات ورود";
+            editLoginItem.Click += editLoginItem_Click;
             // 
             // toolStrip1
             // 
@@ -99,6 +100,7 @@
             btnCustomers.Name = "btnCustomers";
             btnCustomers.Size = new Size(87, 22);
             btnCustomers.Text = "طرف حساب";
+            btnCustomers.Click += btnCustomers_Click;
             // 
             // btnAddTransaction
             // 
@@ -107,6 +109,7 @@
             btnAddTransaction.Name = "btnAddTransaction";
             btnAddTransaction.Size = new Size(88, 22);
             btnAddTransaction.Text = "تراکنش جدید";
+            btnAddTransaction.Click += btnAddTransaction_Click;
             // 
             // btnReportExpense
             // 
@@ -115,6 +118,7 @@
             btnReportExpense.Name = "btnReportExpense";
             btnReportExpense.Size = new Size(113, 22);
             btnReportExpense.Text = "گزارش پرداختی ها";
+            btnReportExpense.Click += btnReportExpense_Click;
             // 
             // btnReportReceive
             // 
@@ -123,6 +127,7 @@
             btnReportReceive.Name = "btnReportReceive";
             btnReportReceive.Size = new Size(114, 22);
             btnReportReceive.Text = "گزارش دریافتی ها";
+            btnReportReceive.Click += btnReportReceive_Click;
             // 
             // gbMonthReport
             // 
@@ -139,23 +144,29 @@
             gbMonthReport.TabStop = false;
             gbMonthReport.Text = "گزارش این ماه";
             // 
-            // label1
+            // lblAccountBalance
             // 
-            label1.AutoSize = true;
-            label1.Location = new Point(298, 50);
-            label1.Name = "label1";
-            label1.Size = new Size(63, 15);
-            label1.TabIndex = 0;
-            label1.Text = "دریافتی ها:";
+            lblAccountBalance.Location = new Point(6, 131);
+            lblAccountBalance.Name = "lblAccountBalance";
+            lblAccountBalance.Size = new Size(286, 23);
+            lblAccountBalance.TabIndex = 5;
+            lblAccountBalance.Text = "0";
             // 
-            // label2
+            // lblExpense
             // 
-            label2.AutoSize = true;
-            label2.Location = new Point(298, 90);
-            label2.Name = "label2";
-            label2.Size = new Size(62, 15);
-            label2.TabIndex = 1;
-            label2.Text = "پرداختی ها:";
+            lblExpense.Location = new Point(6, 90);
+            lblExpense.Name = "lblExpense";
+            lblExpense.Size = new Size(286, 23);
+            lblExpense.TabIndex = 4;
+            lblExpense.Text = "0";
+            // 
+            // lblReceive
+            // 
+            lblReceive.Location = new Point(6, 50);
+            lblReceive.Name = "lblReceive";
+            lblReceive.Size = new Size(286, 23);
+            lblReceive.TabIndex = 3;
+            lblReceive.Text = "0";
             // 
             // label3
             // 
@@ -166,29 +177,23 @@
             label3.TabIndex = 2;
             label3.Text = "مانده: ";
             // 
-            // lblReceive
+            // label2
             // 
-            lblReceive.Location = new Point(6, 50);
-            lblReceive.Name = "lblReceive";
-            lblReceive.Size = new Size(286, 23);
-            lblReceive.TabIndex = 3;
-            lblReceive.Text = "0";
+            label2.AutoSize = true;
+            label2.Location = new Point(298, 90);
+            label2.Name = "label2";
+            label2.Size = new Size(62, 15);
+            label2.TabIndex = 1;
+            label2.Text = "پرداختی ها:";
             // 
-            // lblExpense
+            // label1
             // 
-            lblExpense.Location = new Point(6, 90);
-            lblExpense.Name = "lblExpense";
-            lblExpense.Size = new Size(286, 23);
-            lblExpense.TabIndex = 4;
-            lblExpense.Text = "0";
-            // 
-            // lblAccountBalance
-            // 
-            lblAccountBalance.Location = new Point(6, 131);
-            lblAccountBalance.Name = "lblAccountBalance";
-            lblAccountBalance.Size = new Size(286, 23);
-            lblAccountBalance.TabIndex = 5;
-            lblAccountBalance.Text = "0";
+            label1.AutoSize = true;
+            label1.Location = new Point(298, 50);
+            label1.Name = "label1";
+            label1.Size = new Size(63, 15);
+            label1.TabIndex = 0;
+            label1.Text = "دریافتی ها:";
             // 
             // btnRefresh
             // 
@@ -198,6 +203,7 @@
             btnRefresh.TabIndex = 6;
             btnRefresh.Text = "تازه سازی";
             btnRefresh.UseVisualStyleBackColor = true;
+            btnRefresh.Click += btnRefresh_Click;
             // 
             // statusStrip1
             // 
@@ -224,6 +230,7 @@
             // 
             timer1.Enabled = true;
             timer1.Interval = 1000;
+            timer1.Tick += timer1_Tick;
             // 
             // pictureBox1
             // 
@@ -251,6 +258,7 @@
             RightToLeft = RightToLeft.Yes;
             StartPosition = FormStartPosition.CenterScreen;
             Text = "حسابداری";
+            Load += frmMain_Load;
             toolStripMain.ResumeLayout(false);
             toolStripMain.PerformLayout();
             toolStrip1.ResumeLayout(false);

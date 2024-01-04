@@ -7,11 +7,11 @@ namespace Wallet.EndPoint.WinForm
 {
     public partial class frmLogin : Form
     {
-        private readonly WalletDbContext _walletDbContext;
+        private readonly UnitOfWork _unitOfWork;
 
-        public frmLogin(WalletDbContext walletDbContext)
+        public frmLogin(UnitOfWork unitOfWork)
         {
-            _walletDbContext = walletDbContext;
+            _unitOfWork = unitOfWork;
         }
 
         public bool isEdit = false;
@@ -27,12 +27,11 @@ namespace Wallet.EndPoint.WinForm
             {
                 this.Text = "تنظیمات ورود به برنامه";
                 btnLogin.Text = "تغییر رمز";
-                using (UnitOfWork db = new UnitOfWork(_walletDbContext))
-                {
-                    var login = db.LoginRepository.Get().First();
-                    txtUsername.Text = login.UserName;
-                    txtPassword.Text = login.Password;
-                }
+
+                var login = _unitOfWork.LoginRepository.Get().First();
+                txtUsername.Text = login.UserName;
+                txtPassword.Text = login.Password;
+
             }
         }
 
@@ -40,29 +39,25 @@ namespace Wallet.EndPoint.WinForm
         {
             if (BaseValidator.IsFormValid(this.components))
             {
-                using (UnitOfWork db = new UnitOfWork(_walletDbContext))
+                if (isEdit)
                 {
-                    if (isEdit)
+                    var login = _unitOfWork.LoginRepository.Get().First();
+                    login.UserName = txtUsername.Text;
+                    login.Password = txtPassword.Text;
+                    _unitOfWork.LoginRepository.Update(login);
+                    _unitOfWork.Save();
+                    System.Windows.Forms.Application.Restart();
+                }
+                else
+                {
+                    if (_unitOfWork.LoginRepository.Get(l => l.UserName == txtUsername.Text && l.Password == txtPassword.Text).Any())
                     {
-                        var login = db.LoginRepository.Get().First();
-                        login.UserName = txtUsername.Text;
-                        login.Password = txtPassword.Text;
-                        db.LoginRepository.Update(login);
-                        db.Save();
-                        System.Windows.Forms.Application.Restart();
+                        DialogResult = DialogResult.OK;
                     }
                     else
                     {
-                        if (db.LoginRepository.Get(l => l.UserName == txtUsername.Text && l.Password == txtPassword.Text).Any())
-                        {
-                            DialogResult = DialogResult.OK;
-                        }
-                        else
-                        {
-                            RtlMessageBox.Show("اطلاعات وارد شده صحیح نیست");
-                        }
+                        RtlMessageBox.Show("اطلاعات وارد شده صحیح نیست");
                     }
-
                 }
             }
         }

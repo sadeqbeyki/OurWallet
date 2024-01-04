@@ -1,6 +1,7 @@
 ﻿using ValidationComponents;
 using Wallet.Application.Helpers;
 using Wallet.Domain.Entities;
+using Wallet.Domain.Interfaces;
 using Wallet.Persistance.Common;
 using Wallet.Persistance.Data;
 
@@ -9,15 +10,12 @@ namespace Wallet.EndPoint.WinForm.Customers
     public partial class frmAddTransaction : Form
     {
         public Guid transactionId = Guid.Empty;
-        private readonly WalletDbContext _walletDbContext;
-        private readonly UnitOfWork db;
+        private readonly UnitOfWork _unitOfWork;
 
-        public frmAddTransaction(WalletDbContext walletDbContext)
+        public frmAddTransaction(UnitOfWork unitOfWork)
         {
-            _walletDbContext = walletDbContext;
-            db = new(_walletDbContext);
+            _unitOfWork = unitOfWork;
         }
-
 
         public frmAddTransaction()
         {
@@ -27,13 +25,13 @@ namespace Wallet.EndPoint.WinForm.Customers
         private void frmAddTransaction_Load(object sender, EventArgs e)
         {
             dgvCustomers.AutoGenerateColumns = false;
-            dgvCustomers.DataSource = db.CustomerRepository.GetNameCustomer();
+            dgvCustomers.DataSource = _unitOfWork.CustomerRepository.GetNameCustomer();
             if (transactionId != Guid.Empty)
             {
-                var account = db.transactionRepository.GetById(transactionId);
+                var account = _unitOfWork.transactionRepository.GetById(transactionId);
                 txtAmount.Value = int.Parse(account.Amount.ToString());
                 txtDescription.Text = account.Description;
-                txtName.Text = db.CustomerRepository.GetCustomerNameById(account.CustomerId);
+                txtName.Text = _unitOfWork.CustomerRepository.GetCustomerNameById(account.CustomerId);
                 if (account.TypeId == 1)
                 {
                     rbReceive.Checked = true;
@@ -44,14 +42,14 @@ namespace Wallet.EndPoint.WinForm.Customers
                 }
                 this.Text = "ویرایش";
                 btnSave.Text = "ویرایش";
-                db.Dispose();
+                _unitOfWork.Dispose();
             }
         }
 
         private void txtFilter_TextChanged(object sender, EventArgs e)
         {
             dgvCustomers.AutoGenerateColumns = false;
-            dgvCustomers.DataSource = db.CustomerRepository.GetNameCustomer(txtFilter.Text);
+            dgvCustomers.DataSource = _unitOfWork.CustomerRepository.GetNameCustomer(txtFilter.Text);
         }
 
         private void dgvCustomers_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -70,7 +68,7 @@ namespace Wallet.EndPoint.WinForm.Customers
                     Wallet.Domain.Entities.Transaction transaction = new()
                     {
                         Amount = int.Parse(txtAmount.Value.ToString()),
-                        CustomerId = db.CustomerRepository.GetCustomerIdByName(txtName.Text),
+                        CustomerId = _unitOfWork.CustomerRepository.GetCustomerIdByName(txtName.Text),
                         //condition if == اگه چک شده بود 1 که همون آیدی اکانتینگ تایپ در جدول دیتابیس هست 
                         //و اگه چک نشده بود ۲ رو بزار
                         TypeId = (rbReceive.Checked) ? 1 : 2,
@@ -79,15 +77,15 @@ namespace Wallet.EndPoint.WinForm.Customers
                     };
                     if (transactionId == Guid.Empty)
                     {
-                        db.transactionRepository.Insert(transaction);
+                        _unitOfWork.transactionRepository.Insert(transaction);
                     }
                     else
                     {
                         transaction.Id = transactionId;
-                        db.transactionRepository.Update(transaction);
+                        _unitOfWork.transactionRepository.Update(transaction);
                     }
-                    db.Save();
-                    db.Dispose();
+                    _unitOfWork.Save();
+                    _unitOfWork.Dispose();
                     DialogResult = DialogResult.OK;
                 }
                 else

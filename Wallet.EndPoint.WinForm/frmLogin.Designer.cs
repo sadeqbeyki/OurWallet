@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             groupBoxLogin = new GroupBox();
-            lblUsername = new Label();
-            lblPassword = new Label();
-            txtUsername = new TextBox();
             txtPassword = new TextBox();
+            txtUsername = new TextBox();
+            lblPassword = new Label();
+            lblUsername = new Label();
             btnLogin = new Button();
             groupBoxLogin.SuspendLayout();
             SuspendLayout();
@@ -50,14 +50,19 @@
             groupBoxLogin.TabStop = false;
             groupBoxLogin.Text = "فرم ورود";
             // 
-            // lblUsername
+            // txtPassword
             // 
-            lblUsername.AutoSize = true;
-            lblUsername.Location = new Point(247, 22);
-            lblUsername.Name = "lblUsername";
-            lblUsername.Size = new Size(55, 15);
-            lblUsername.TabIndex = 0;
-            lblUsername.Text = "نام کاربری";
+            txtPassword.Location = new Point(20, 50);
+            txtPassword.Name = "txtPassword";
+            txtPassword.Size = new Size(210, 23);
+            txtPassword.TabIndex = 3;
+            // 
+            // txtUsername
+            // 
+            txtUsername.Location = new Point(20, 22);
+            txtUsername.Name = "txtUsername";
+            txtUsername.Size = new Size(210, 23);
+            txtUsername.TabIndex = 2;
             // 
             // lblPassword
             // 
@@ -68,19 +73,14 @@
             lblPassword.TabIndex = 1;
             lblPassword.Text = "گذرواژه";
             // 
-            // txtUsername
+            // lblUsername
             // 
-            txtUsername.Location = new Point(20, 22);
-            txtUsername.Name = "txtUsername";
-            txtUsername.Size = new Size(210, 23);
-            txtUsername.TabIndex = 2;
-            // 
-            // txtPassword
-            // 
-            txtPassword.Location = new Point(20, 50);
-            txtPassword.Name = "txtPassword";
-            txtPassword.Size = new Size(210, 23);
-            txtPassword.TabIndex = 3;
+            lblUsername.AutoSize = true;
+            lblUsername.Location = new Point(247, 22);
+            lblUsername.Name = "lblUsername";
+            lblUsername.Size = new Size(55, 15);
+            lblUsername.TabIndex = 0;
+            lblUsername.Text = "نام کاربری";
             // 
             // btnLogin
             // 
@@ -90,6 +90,7 @@
             btnLogin.TabIndex = 1;
             btnLogin.Text = "ورود به برنامه";
             btnLogin.UseVisualStyleBackColor = true;
+            btnLogin.Click += btnLogin_Click;
             // 
             // frmLogin
             // 
@@ -103,6 +104,7 @@
             RightToLeft = RightToLeft.Yes;
             StartPosition = FormStartPosition.CenterParent;
             Text = "ورود";
+            Load += frmLogin_Load;
             groupBoxLogin.ResumeLayout(false);
             groupBoxLogin.PerformLayout();
             ResumeLayout(false);

@@ -70,6 +70,7 @@
             btnEdit.Size = new Size(47, 35);
             btnEdit.Text = "ویرایش";
             btnEdit.TextImageRelation = TextImageRelation.ImageAboveText;
+            btnEdit.Click += btnEdit_Click;
             // 
             // btnDelete
             // 
@@ -79,6 +80,7 @@
             btnDelete.Size = new Size(36, 35);
             btnDelete.Text = "حذف";
             btnDelete.TextImageRelation = TextImageRelation.ImageAboveText;
+            btnDelete.Click += btnDelete_Click;
             // 
             // btnRefresh
             // 
@@ -88,6 +90,7 @@
             btnRefresh.Size = new Size(60, 35);
             btnRefresh.Text = "بروزرسانی";
             btnRefresh.TextImageRelation = TextImageRelation.ImageAboveText;
+            btnRefresh.Click += btnRefresh_Click;
             // 
             // btnPrint
             // 
@@ -97,6 +100,7 @@
             btnPrint.Size = new Size(32, 35);
             btnPrint.Text = "چاپ";
             btnPrint.TextImageRelation = TextImageRelation.ImageAboveText;
+            btnPrint.Click += btnPrint_Click;
             // 
             // gbSearch
             // 
@@ -140,6 +144,7 @@
             btnFilter.TabIndex = 6;
             btnFilter.Text = "بیاب";
             btnFilter.UseVisualStyleBackColor = true;
+            btnFilter.Click += btnFilter_Click;
             // 
             // cbCustomer
             // 
@@ -238,6 +243,7 @@
             Name = "frmReport";
             RightToLeft = RightToLeft.Yes;
             Text = "گزارش گیری";
+            Load += frmReport_Load;
             toolStrip1.ResumeLayout(false);
             toolStrip1.PerformLayout();
             gbSearch.ResumeLayout(false);

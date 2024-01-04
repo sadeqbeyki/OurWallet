@@ -6,13 +6,12 @@ namespace Wallet.EndPoint.WinForm.Customers
 {
     public partial class frmCustomers : Form
     {
-        private readonly WalletDbContext _walletDbContext;
+        private readonly UnitOfWork _unitOfWork;
 
-        public frmCustomers(WalletDbContext walletDbContext)
+        public frmCustomers(UnitOfWork unitOfWork)
         {
-            _walletDbContext = walletDbContext;
+            _unitOfWork = unitOfWork;
         }
-
         public frmCustomers()
         {
             InitializeComponent();
@@ -23,12 +22,8 @@ namespace Wallet.EndPoint.WinForm.Customers
         }
         void BindGrid()
         {
-            using (UnitOfWork db = new UnitOfWork(_walletDbContext))
-            {
-                dgvCustomers.AutoGenerateColumns = false;
-                dgvCustomers.DataSource = db.CustomerRepository.GetAllCustomers();
-            }
-
+            dgvCustomers.AutoGenerateColumns = false;
+            dgvCustomers.DataSource = _unitOfWork.CustomerRepository.GetAllCustomers();
         }
 
         private void btnRefresh_Click(object sender, EventArgs e)
@@ -39,34 +34,26 @@ namespace Wallet.EndPoint.WinForm.Customers
 
         private void Filter_TextChanged(object sender, EventArgs e)
         {
-            using (UnitOfWork db = new UnitOfWork(_walletDbContext))
-            {
-                dgvCustomers.DataSource = db.CustomerRepository.GetCustomerByFilter(txtFilter.Text);
-            }
+            dgvCustomers.DataSource = _unitOfWork.CustomerRepository.GetCustomerByFilter(txtFilter.Text);
         }
 
         private void btnDeleteCustomer_Click(object sender, EventArgs e)
         {
             if (dgvCustomers.CurrentRow != null)
             {
-                using (UnitOfWork db = new UnitOfWork(_walletDbContext))
+                string name = dgvCustomers.CurrentRow.Cells[1].Value.ToString();
+                if (RtlMessageBox.Show($"آیا از حذف {name} مطمعن هستید؟", "توجه", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
                 {
-                    string name = dgvCustomers.CurrentRow.Cells[1].Value.ToString();
-                    if (RtlMessageBox.Show($"آیا از حذف {name} مطمعن هستید؟", "توجه", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+                    //cells[0] = delete by id
+                    object value = dgvCustomers.CurrentRow.Cells[0].Value;
+                    if (value != null)
                     {
-                        //cells[0] = delete by id
-                        object value = dgvCustomers.CurrentRow.Cells[0].Value;
-                        if (value != null)
-                        {
-                            Guid customerId = (Guid)value;
-                            db.CustomerRepository.DeleteCustomer(customerId);
-                            db.Save();
-                            BindGrid();
-                        }
+                        Guid customerId = (Guid)value;
+                        _unitOfWork.CustomerRepository.DeleteCustomer(customerId);
+                        _unitOfWork.Save();
+                        BindGrid();
                     }
-
                 }
-
             }
             else
             {

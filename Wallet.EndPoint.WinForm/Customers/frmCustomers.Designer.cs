@@ -63,6 +63,7 @@
             btnAddNewCustomer.Size = new Size(80, 59);
             btnAddNewCustomer.Text = "افزودن شخص";
             btnAddNewCustomer.TextImageRelation = TextImageRelation.ImageAboveText;
+            btnAddNewCustomer.Click += btnAddNewCustomer_Click;
             // 
             // btnEditCustomer
             // 
@@ -73,6 +74,7 @@
             btnEditCustomer.Size = new Size(83, 59);
             btnEditCustomer.Text = "ویرایش شخص";
             btnEditCustomer.TextImageRelation = TextImageRelation.ImageAboveText;
+            btnEditCustomer.Click += btnEditCustomer_Click;
             // 
             // btnDeleteCustomer
             // 
@@ -83,6 +85,7 @@
             btnDeleteCustomer.Size = new Size(72, 59);
             btnDeleteCustomer.Text = "حذف شخص";
             btnDeleteCustomer.TextImageRelation = TextImageRelation.ImageAboveText;
+            btnDeleteCustomer.Click += btnDeleteCustomer_Click;
             // 
             // btnRefresh
             // 
@@ -93,6 +96,7 @@
             btnRefresh.Size = new Size(60, 59);
             btnRefresh.Text = "بروزرسانی";
             btnRefresh.TextImageRelation = TextImageRelation.ImageAboveText;
+            btnRefresh.Click += btnRefresh_Click;
             // 
             // searchLabel
             // 
@@ -104,6 +108,7 @@
             // 
             txtFilter.Name = "txtFilter";
             txtFilter.Size = new Size(100, 62);
+            txtFilter.TextChanged += Filter_TextChanged;
             // 
             // dgvCustomers
             // 
@@ -161,6 +166,7 @@
             RightToLeft = RightToLeft.Yes;
             StartPosition = FormStartPosition.CenterParent;
             Text = "لیست اشخاص";
+            Load += frmCustomers_Load;
             toolStripMenu.ResumeLayout(false);
             toolStripMenu.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dgvCustomers).EndInit();

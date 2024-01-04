@@ -160,6 +160,7 @@
             btnSelectPhoto.TabIndex = 1;
             btnSelectPhoto.Text = "برگزیدن تصویر";
             btnSelectPhoto.UseVisualStyleBackColor = true;
+            btnSelectPhoto.Click += btnSelectPhoto_Click;
             // 
             // pcCustomer
             // 
@@ -181,6 +182,7 @@
             btnSave.TabIndex = 2;
             btnSave.Text = "افزودن";
             btnSave.UseVisualStyleBackColor = true;
+            btnSave.Click += btnSave_Click;
             // 
             // frmAddOrEditCustomer
             // 
@@ -197,6 +199,7 @@
             RightToLeft = RightToLeft.Yes;
             StartPosition = FormStartPosition.CenterParent;
             Text = "افزودن شخص جدید";
+            Load += frmAddOrEditCustomer_Load;
             groupBoxPerson.ResumeLayout(false);
             groupBoxPerson.PerformLayout();
             groupBoxImg.ResumeLayout(false);

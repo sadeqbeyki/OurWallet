@@ -17,15 +17,12 @@ namespace Wallet.EndPoint.WinForm.Customers
     public partial class frmAddOrEditCustomer : Form
     {
         public Guid customerId = Guid.Empty;
-        private readonly WalletDbContext _walletDbContext;
-        private readonly UnitOfWork db;
+        private readonly UnitOfWork _unitOfWork;
 
-        public frmAddOrEditCustomer(WalletDbContext walletDbContext)
+        public frmAddOrEditCustomer(UnitOfWork unitOfWork)
         {
-            _walletDbContext = walletDbContext;
-            db = new(_walletDbContext);
+            _unitOfWork = unitOfWork;
         }
-
 
         public frmAddOrEditCustomer()
         {
@@ -65,15 +62,15 @@ namespace Wallet.EndPoint.WinForm.Customers
                 };
                 if (customerId == Guid.Empty)
                 {
-                    db.CustomerRepository.InsertCustomer(customers);
+                    _unitOfWork.CustomerRepository.InsertCustomer(customers);
                 }
                 else
                 {
                     customers.Id = customerId;
-                    db.CustomerRepository.UpdateCustomer(customers);
+                    _unitOfWork.CustomerRepository.UpdateCustomer(customers);
                 }
 
-                db.Save();
+                _unitOfWork.Save();
                 DialogResult = DialogResult.OK;
             }
         }
@@ -84,7 +81,7 @@ namespace Wallet.EndPoint.WinForm.Customers
             {
                 this.Text = "ویرایش شخص";
                 btnSave.Text = "ویرایش";
-                var customer = db.CustomerRepository.GetCustomerById(customerId);
+                var customer = _unitOfWork.CustomerRepository.GetCustomerById(customerId);
                 txtName.Text = customer.FirstName;
                 txtMobile.Text = customer.Mobile;
                 txtEmail.Text = customer.Email;
