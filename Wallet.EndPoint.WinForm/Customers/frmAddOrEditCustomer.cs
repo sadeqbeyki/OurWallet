@@ -12,6 +12,15 @@ namespace Wallet.EndPoint.WinForm.Customers
         {
             InitializeComponent();
             _unitOfWork = unitOfWork;
+            txtName.TabIndex = 1;
+            txtLastName.TabIndex = 2;
+            txtMobile.TabIndex = 3;
+            txtEmail.TabIndex = 4;
+            txtAddress.TabIndex = 5;
+            btnSelectPhoto.TabIndex = 6;
+            btnSave.TabIndex = 7;
+
+            pcCustomer.TabStop = false;
         }
 
         private void btnSelectPhoto_Click(object sender, EventArgs e)
