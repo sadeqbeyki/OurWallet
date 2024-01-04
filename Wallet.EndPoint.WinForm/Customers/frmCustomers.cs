@@ -1,4 +1,7 @@
 ﻿using Wallet.Application.Helpers;
+using Wallet.Domain.Entities;
+using Wallet.Domain.Interfaces;
+using Wallet.Domain.Interfaces.Base;
 using Wallet.Persistance.Common;
 using Wallet.Persistance.Data;
 
@@ -6,15 +9,12 @@ namespace Wallet.EndPoint.WinForm.Customers
 {
     public partial class frmCustomers : Form
     {
-        private readonly UnitOfWork _unitOfWork;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public frmCustomers(UnitOfWork unitOfWork)
-        {
-            _unitOfWork = unitOfWork;
-        }
-        public frmCustomers()
+        public frmCustomers(IUnitOfWork unitOfWork)
         {
             InitializeComponent();
+            _unitOfWork = unitOfWork;
         }
         private void frmCustomers_Load(object sender, EventArgs e)
         {
@@ -25,7 +25,7 @@ namespace Wallet.EndPoint.WinForm.Customers
             dgvCustomers.AutoGenerateColumns = false;
             dgvCustomers.DataSource = _unitOfWork.CustomerRepository.GetAllCustomers();
         }
-
+ 
         private void btnRefresh_Click(object sender, EventArgs e)
         {
             txtFilter.Text = "";
@@ -63,7 +63,7 @@ namespace Wallet.EndPoint.WinForm.Customers
 
         private void btnAddNewCustomer_Click(object sender, EventArgs e)
         {
-            frmAddOrEditCustomer frmAdd = new frmAddOrEditCustomer();
+            frmAddOrEditCustomer frmAdd = new frmAddOrEditCustomer(_unitOfWork);
             if (frmAdd.ShowDialog() == DialogResult.OK)
             {
                 BindGrid();
@@ -73,7 +73,7 @@ namespace Wallet.EndPoint.WinForm.Customers
         private void btnEditCustomer_Click(object sender, EventArgs e)
         {
             Guid customerId = Guid.Parse(dgvCustomers.CurrentRow.Cells[0].Value.ToString());
-            frmAddOrEditCustomer frmAddOrEdit = new frmAddOrEditCustomer();
+            frmAddOrEditCustomer frmAddOrEdit = new frmAddOrEditCustomer(_unitOfWork);
             frmAddOrEdit.customerId = customerId;
             if (frmAddOrEdit.ShowDialog() == DialogResult.OK)
             {

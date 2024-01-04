@@ -1,10 +1,12 @@
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 using Wallet.Application.DTOs;
 using Wallet.Domain.Interfaces;
 using Wallet.Domain.Interfaces.Base;
 using Wallet.EndPoint.WinForm.Customers;
 using Wallet.EndPoint.WinForm.Transaction;
 using Wallet.Persistance.Common;
+using Wallet.Persistance.Data;
 using Wallet.Service;
 
 namespace Wallet.EndPoint.WinForm
@@ -15,19 +17,20 @@ namespace Wallet.EndPoint.WinForm
 
         public frmMain(IUnitOfWork unitOfWork)
         {
+            InitializeComponent();
             _unitOfWork = unitOfWork;
         }
 
-        public frmMain()
-        {
-            InitializeComponent();
-        }
+        //public frmMain()
+        //{
+        //InitializeComponent();
+        //}
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
 
-            //_unitOfWork.Database.EnsureCreated();
-            //_walletDbContext.Transactions.Load();
+            //_dbContext.Database.EnsureCreated();
+            //_dbContext.Transactions.Load();
         }
 
 
@@ -89,7 +92,7 @@ namespace Wallet.EndPoint.WinForm
 
         private void btnCustomers_Click(object sender, EventArgs e)
         {
-            frmCustomers frmCustomer = new frmCustomers();
+            frmCustomers frmCustomer = new(_unitOfWork);
             frmCustomer.ShowDialog();
         }
 

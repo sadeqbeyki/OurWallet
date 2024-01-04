@@ -1,8 +1,9 @@
-﻿namespace Wallet.Domain.Entities
+﻿using Wallet.Domain.Entities.Base;
+
+namespace Wallet.Domain.Entities
 {
-    public class FinancialReport
+    public class FinancialReport : BaseEntity<int>
     {
-        public int ReportID { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
         public decimal TotalIncome { get; set; }

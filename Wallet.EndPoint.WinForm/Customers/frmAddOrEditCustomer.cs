@@ -1,32 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using ValidationComponents;
-using Wallet.Domain.Entities;
-using Wallet.Persistance.Common;
-using Wallet.Persistance.Data;
+﻿using Wallet.Domain.Entities;
+using Wallet.Domain.Interfaces;
 
 namespace Wallet.EndPoint.WinForm.Customers
 {
     public partial class frmAddOrEditCustomer : Form
     {
         public Guid customerId = Guid.Empty;
-        private readonly UnitOfWork _unitOfWork;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public frmAddOrEditCustomer(UnitOfWork unitOfWork)
-        {
-            _unitOfWork = unitOfWork;
-        }
-
-        public frmAddOrEditCustomer()
+        public frmAddOrEditCustomer(IUnitOfWork unitOfWork)
         {
             InitializeComponent();
+            _unitOfWork = unitOfWork;
         }
 
         private void btnSelectPhoto_Click(object sender, EventArgs e)
@@ -40,39 +25,38 @@ namespace Wallet.EndPoint.WinForm.Customers
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            if (BaseValidator.IsFormValid(this.components))
+            //if (BaseValidator.IsFormValid(this.components))
+            //{
+            string imageName = Guid.NewGuid().ToString() + Path.GetExtension(pcCustomer.ImageLocation);
+            string path = System.Windows.Forms.Application.StartupPath + "/Images/";
+            if (!Directory.Exists(path))
             {
-                //تولید نام تصادفی برای عکس که منحصر به فرد هم هست
-                string imageName = Guid.NewGuid().ToString() + Path.GetExtension(pcCustomer.ImageLocation);
-                //ذخیره در لوکیشن با نام تصادفی
-                string path = System.Windows.Forms.Application.StartupPath + "/Images/";
-                //اگر همچین فولدری وجود نداشت ایجاد کن
-                if (!Directory.Exists(path))
-                {
-                    Directory.CreateDirectory(path);
-                };
-                pcCustomer.Image.Save(path + imageName);
-                Customer customers = new Customer()
-                {
-                    FirstName = txtName.Text,
-                    Mobile = txtMobile.Text,
-                    Email = txtEmail.Text,
-                    Address = lblAddress.Text,
-                    Image = imageName
-                };
-                if (customerId == Guid.Empty)
-                {
-                    _unitOfWork.CustomerRepository.InsertCustomer(customers);
-                }
-                else
-                {
-                    customers.Id = customerId;
-                    _unitOfWork.CustomerRepository.UpdateCustomer(customers);
-                }
-
-                _unitOfWork.Save();
-                DialogResult = DialogResult.OK;
+                Directory.CreateDirectory(path);
+            };
+            pcCustomer.Image.Save(path + imageName);
+            Customer customers = new Customer()
+            {
+                CreatedAt = DateTime.Now,
+                FirstName = txtName.Text,
+                LastName = txtLastName.Text,
+                Mobile = txtMobile.Text,
+                Email = txtEmail.Text,
+                Address = txtAddress.Text,
+                Image = imageName
+            };
+            if (customerId == Guid.Empty)
+            {
+                _unitOfWork.CustomerRepository.InsertCustomer(customers);
             }
+            else
+            {
+                customers.Id = customerId;
+                _unitOfWork.CustomerRepository.UpdateCustomer(customers);
+            }
+
+            _unitOfWork.Save();
+            DialogResult = DialogResult.OK;
+            //}
         }
 
         private void frmAddOrEditCustomer_Load(object sender, EventArgs e)
@@ -83,6 +67,7 @@ namespace Wallet.EndPoint.WinForm.Customers
                 btnSave.Text = "ویرایش";
                 var customer = _unitOfWork.CustomerRepository.GetCustomerById(customerId);
                 txtName.Text = customer.FirstName;
+                txtLastName.Text = customer.LastName;
                 txtMobile.Text = customer.Mobile;
                 txtEmail.Text = customer.Email;
                 txtAddress.Text = customer.Address;

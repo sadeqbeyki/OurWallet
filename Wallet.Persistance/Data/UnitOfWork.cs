@@ -34,8 +34,8 @@ namespace Wallet.Persistance.Data
             }
         }
 
-        private Repository<Guid, Transaction> _transactionRepository;
-        public Repository<Guid, Transaction> transactionRepository
+        private IRepository<Guid, Transaction> _transactionRepository;
+        public IRepository<Guid, Transaction> transactionRepository
         {
             get
             {
@@ -47,8 +47,8 @@ namespace Wallet.Persistance.Data
             }
         }
 
-        private Repository<int, Login> _loginRepository;
-        public Repository<int, Login> LoginRepository
+        private IRepository<int, Login> _loginRepository;
+        public IRepository<int, Login> LoginRepository
         {
             get
             {
@@ -56,14 +56,15 @@ namespace Wallet.Persistance.Data
                 return _loginRepository;
             }
         }
-        public IRepository<TKey,TEntity> GetRepository<TKey, TEntity>() where TEntity : BaseEntity<TKey>
+
+        public IRepository<TKey, TEntity> GetRepository<TKey, TEntity>() where TEntity : BaseEntity<TKey>
         {
             if (_repositories.ContainsKey(typeof(TEntity)))
             {
                 return (IRepository<TKey, TEntity>)_repositories[typeof(TEntity)];
             }
 
-            var repository = new Repository<TKey,TEntity>(_walletDbContext);
+            var repository = new Repository<TKey, TEntity>(_walletDbContext);
             _repositories.Add(typeof(TEntity), repository);
             return repository;
         }

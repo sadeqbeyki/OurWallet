@@ -19,7 +19,7 @@ public class WalletDbContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        optionsBuilder.UseSqlServer("Data Source=.;Initial Catalog=HesabDB;Integrated Security=True");
-        //base.OnConfiguring(optionsBuilder);
+        optionsBuilder.UseSqlServer("Data Source=.;Initial Catalog=AccountDB;Integrated Security=True");
+        base.OnConfiguring(optionsBuilder);
     }
 }

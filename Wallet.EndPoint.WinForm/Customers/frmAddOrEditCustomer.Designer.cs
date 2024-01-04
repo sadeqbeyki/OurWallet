@@ -41,6 +41,7 @@
             btnSelectPhoto = new Button();
             pcCustomer = new PictureBox();
             btnSave = new Button();
+            txtLastName = new TextBox();
             groupBoxPerson.SuspendLayout();
             groupBoxImg.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pcCustomer).BeginInit();
@@ -48,6 +49,7 @@
             // 
             // groupBoxPerson
             // 
+            groupBoxPerson.Controls.Add(txtLastName);
             groupBoxPerson.Controls.Add(txtAddress);
             groupBoxPerson.Controls.Add(txtEmail);
             groupBoxPerson.Controls.Add(txtMobile);
@@ -92,10 +94,10 @@
             // 
             // txtName
             // 
-            txtName.Location = new Point(6, 40);
+            txtName.Location = new Point(148, 40);
             txtName.Margin = new Padding(4, 3, 4, 3);
             txtName.Name = "txtName";
-            txtName.Size = new Size(259, 23);
+            txtName.Size = new Size(117, 23);
             txtName.TabIndex = 7;
             // 
             // lblAddress
@@ -184,6 +186,14 @@
             btnSave.UseVisualStyleBackColor = true;
             btnSave.Click += btnSave_Click;
             // 
+            // txtLastName
+            // 
+            txtLastName.Location = new Point(8, 40);
+            txtLastName.Margin = new Padding(4, 3, 4, 3);
+            txtLastName.Name = "txtLastName";
+            txtLastName.Size = new Size(132, 23);
+            txtLastName.TabIndex = 11;
+            // 
             // frmAddOrEditCustomer
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -222,5 +232,6 @@
         private TextBox txtEmail;
         private TextBox txtMobile;
         private TextBox txtName;
+        private TextBox txtLastName;
     }
 }

@@ -75,7 +75,11 @@ namespace Wallet.Persistance.Repositories
         }
         public IEnumerable<Customer> GetCustomerByFilter(string parameter)
         {
-            return _dbContext.Customers.Where(c => c.FirstName.Contains(parameter) || c.Email.Contains(parameter) || c.Mobile.Contains(parameter)).ToList();
+            return _dbContext.Customers
+                .Where(c => c.FirstName.Contains(parameter) 
+                || c.Email.Contains(parameter) 
+                || c.Mobile.Contains(parameter)
+                || c.LastName.Contains(parameter)).ToList();
         }
         public List<Customer> GetNameCustomer(string filter = "")
         {

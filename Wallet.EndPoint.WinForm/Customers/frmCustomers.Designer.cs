@@ -38,8 +38,10 @@
             dgvCustomers = new DataGridView();
             Id = new DataGridViewTextBoxColumn();
             FirstName = new DataGridViewTextBoxColumn();
+            LastName = new DataGridViewTextBoxColumn();
             Mobile = new DataGridViewTextBoxColumn();
             Email = new DataGridViewTextBoxColumn();
+            CreatedAt = new DataGridViewTextBoxColumn();
             toolStripMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvCustomers).BeginInit();
             SuspendLayout();
@@ -117,7 +119,7 @@
             dgvCustomers.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvCustomers.BackgroundColor = SystemColors.AppWorkspace;
             dgvCustomers.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvCustomers.Columns.AddRange(new DataGridViewColumn[] { Id, FirstName, Mobile, Email });
+            dgvCustomers.Columns.AddRange(new DataGridViewColumn[] { Id, FirstName, LastName, Mobile, Email, CreatedAt });
             dgvCustomers.Dock = DockStyle.Fill;
             dgvCustomers.GridColor = SystemColors.ControlDark;
             dgvCustomers.Location = new Point(0, 62);
@@ -129,7 +131,7 @@
             // Id
             // 
             Id.DataPropertyName = "Id";
-            Id.HeaderText = "id";
+            Id.HeaderText = "ID";
             Id.Name = "Id";
             Id.ReadOnly = true;
             // 
@@ -139,6 +141,13 @@
             FirstName.HeaderText = "نام";
             FirstName.Name = "FirstName";
             FirstName.ReadOnly = true;
+            // 
+            // LastName
+            // 
+            LastName.DataPropertyName = "LastName";
+            LastName.HeaderText = "نام خانوادگی";
+            LastName.Name = "LastName";
+            LastName.ReadOnly = true;
             // 
             // Mobile
             // 
@@ -153,6 +162,13 @@
             Email.HeaderText = "ایمیل";
             Email.Name = "Email";
             Email.ReadOnly = true;
+            // 
+            // CreatedAt
+            // 
+            CreatedAt.DataPropertyName = "CreatedAt";
+            CreatedAt.HeaderText = "تاریخ";
+            CreatedAt.Name = "CreatedAt";
+            CreatedAt.ReadOnly = true;
             // 
             // frmCustomers
             // 
@@ -186,7 +202,9 @@
         private DataGridView dgvCustomers;
         private DataGridViewTextBoxColumn Id;
         private DataGridViewTextBoxColumn FirstName;
+        private DataGridViewTextBoxColumn LastName;
         private DataGridViewTextBoxColumn Mobile;
         private DataGridViewTextBoxColumn Email;
+        private DataGridViewTextBoxColumn CreatedAt;
     }
 }
