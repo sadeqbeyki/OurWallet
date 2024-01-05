@@ -55,5 +55,10 @@ namespace Wallet.Persistance.Repositories.Base
             var entity = GetById(Id);
             Delete(entity);
         }
+
+        public TEntity GetEntityByCondition(Expression<Func<TEntity, bool>> condition)
+        {
+            return _dbset.FirstOrDefault(condition);
+        }
     }
 }

@@ -20,6 +20,16 @@ namespace Wallet.Persistance.Data
             _repositories = new Dictionary<Type, object>();
         }
 
+        private IRepository<Guid, Account> _accountRepository;
+        public IRepository<Guid, Account> accountRepository
+        {
+            get
+            {
+                _accountRepository ??= new Repository<Guid, Account>(_walletDbContext);
+                return _accountRepository;
+            }
+        }
+
         private ICustomerRepository _customerRepository;
         public ICustomerRepository CustomerRepository
         {
@@ -31,6 +41,16 @@ namespace Wallet.Persistance.Data
 
                 }
                 return _customerRepository;
+            }
+        }
+
+        private IRepository<int, Login> _loginRepository;
+        public IRepository<int, Login> LoginRepository
+        {
+            get
+            {
+                _loginRepository ??= new Repository<int, Login>(_walletDbContext);
+                return _loginRepository;
             }
         }
 
@@ -47,13 +67,23 @@ namespace Wallet.Persistance.Data
             }
         }
 
-        private IRepository<int, Login> _loginRepository;
-        public IRepository<int, Login> LoginRepository
+        private IRepository<int, TransactionCategory> _transactionCategoryRepository;
+        public IRepository<int, TransactionCategory> transactionCategoryRepository
         {
             get
             {
-                _loginRepository ??= new Repository<int, Login>(_walletDbContext);
-                return _loginRepository;
+                _transactionCategoryRepository ??= new Repository<int, TransactionCategory>(_walletDbContext);
+                return _transactionCategoryRepository;
+            }
+        }
+
+        private IRepository<int, TransactionType> _transactionTypeRepository;
+        public IRepository<int, TransactionType> transactionTypeRepository
+        {
+            get
+            {
+                _transactionTypeRepository ??= new Repository<int, TransactionType>(_walletDbContext);
+                return _transactionTypeRepository;
             }
         }
 

@@ -88,8 +88,8 @@ namespace Wallet.Persistance.Repositories
                 return _dbContext.Customers.Select(c => new Customer()
                 {
                     Id = c.Id,
-                    LastName = c.LastName,
                     FirstName = c.FirstName,
+                    LastName = c.LastName,
                 }).ToList();
             }
             return _dbContext.Customers.Where(c => c.FirstName.Contains(filter)).Select(c => new Customer()

@@ -1,6 +1,7 @@
 ﻿using System.Data;
 using Wallet.Application.Helpers;
 using Wallet.Domain.Entities;
+using Wallet.Domain.Interfaces;
 using Wallet.EndPoint.WinForm.Customers;
 using Wallet.Persistance.Common;
 using Wallet.Persistance.Data;
@@ -10,16 +11,12 @@ namespace Wallet.EndPoint.WinForm.Transaction
     public partial class frmReport : Form
     {
         public int TypeId = 0;
-        private readonly UnitOfWork _unitOfWork;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public frmReport(UnitOfWork unitOfWork)
-        {
-            _unitOfWork = unitOfWork;
-        }
-
-        public frmReport()
+        public frmReport(IUnitOfWork unitOfWork)
         {
             InitializeComponent();
+            _unitOfWork = unitOfWork;
         }
 
         private void frmReport_Load(object sender, EventArgs e)
@@ -119,7 +116,7 @@ namespace Wallet.EndPoint.WinForm.Transaction
             if (dgvReport.CurrentRow != null)
             {
                 Guid id = Guid.Parse(dgvReport.CurrentRow.Cells[0].Value.ToString());
-                frmAddTransaction frmNew = new frmAddTransaction();
+                frmAddTransaction frmNew = new(_unitOfWork);
                 frmNew.transactionId = id;
                 if (frmNew.ShowDialog() == DialogResult.OK)
                 {

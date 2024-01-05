@@ -10,8 +10,11 @@ namespace Wallet.Domain.Interfaces
         void Dispose();
         IRepository<TKey,TEntity> GetRepository<TKey, TEntity>() where TEntity : BaseEntity<TKey>;
 
+        IRepository<Guid, Account> accountRepository { get; }
         ICustomerRepository CustomerRepository { get; }
         IRepository<int, Login> LoginRepository { get; }
         IRepository<Guid, Transaction> transactionRepository { get; }
+        IRepository<int, TransactionCategory> transactionCategoryRepository { get; }
+        IRepository<int, TransactionType> transactionTypeRepository { get; }
     }
 }

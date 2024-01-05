@@ -1,25 +1,19 @@
 ﻿using ValidationComponents;
 using Wallet.Application.Helpers;
-using Wallet.Domain.Entities;
 using Wallet.Domain.Interfaces;
-using Wallet.Persistance.Common;
-using Wallet.Persistance.Data;
+using Wallet.Domain.Interfaces.Base;
 
 namespace Wallet.EndPoint.WinForm.Customers
 {
     public partial class frmAddTransaction : Form
     {
         public Guid transactionId = Guid.Empty;
-        private readonly UnitOfWork _unitOfWork;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public frmAddTransaction(UnitOfWork unitOfWork)
-        {
-            _unitOfWork = unitOfWork;
-        }
-
-        public frmAddTransaction()
+        public frmAddTransaction(IUnitOfWork unitOfWork)
         {
             InitializeComponent();
+            _unitOfWork = unitOfWork;
         }
 
         private void frmAddTransaction_Load(object sender, EventArgs e)
@@ -59,40 +53,45 @@ namespace Wallet.EndPoint.WinForm.Customers
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            if (BaseValidator.IsFormValid(this.components))
+            //if (BaseValidator.IsFormValid(this.components))
+            //{
+            var category = _unitOfWork.transactionCategoryRepository
+                    .GetEntityByCondition(f => f.Name == txtTransactionCategory.Text);
+            var account = _unitOfWork.accountRepository
+                    .GetEntityByCondition(f => f.Name == txtAccountType.Text);
+            if (rbPay.Checked || rbReceive.Checked)
             {
-                if (rbPay.Checked || rbReceive.Checked)
+                Wallet.Domain.Entities.Transaction transaction = new()
                 {
+                    CustomerId = _unitOfWork.CustomerRepository.GetCustomerIdByName(txtName.Text),
 
-                    //Accounting Create after make connection between database and datalayer
-                    Wallet.Domain.Entities.Transaction transaction = new()
-                    {
-                        Amount = int.Parse(txtAmount.Value.ToString()),
-                        CustomerId = _unitOfWork.CustomerRepository.GetCustomerIdByName(txtName.Text),
-                        //condition if == اگه چک شده بود 1 که همون آیدی اکانتینگ تایپ در جدول دیتابیس هست 
-                        //و اگه چک نشده بود ۲ رو بزار
-                        TypeId = (rbReceive.Checked) ? 1 : 2,
-                        CreatedAt = DateTime.Now,
-                        Description = txtDescription.Text
-                    };
-                    if (transactionId == Guid.Empty)
-                    {
-                        _unitOfWork.transactionRepository.Insert(transaction);
-                    }
-                    else
-                    {
-                        transaction.Id = transactionId;
-                        _unitOfWork.transactionRepository.Update(transaction);
-                    }
-                    _unitOfWork.Save();
-                    _unitOfWork.Dispose();
-                    DialogResult = DialogResult.OK;
+                    CategoryId = category.Id,
+
+                    AccountId = account.Id,
+
+                    TypeId = (rbReceive.Checked) ? 1 : 2,
+                    Amount = int.Parse(txtAmount.Value.ToString()),
+                    CreatedAt = DateTime.Now,
+                    Description = txtDescription.Text
+                };
+                if (transactionId == Guid.Empty)
+                {
+                    _unitOfWork.transactionRepository.Insert(transaction);
                 }
                 else
                 {
-                    RtlMessageBox.Show("لطفا نوع تراکنش را برگزینید");
+                    transaction.Id = transactionId;
+                    _unitOfWork.transactionRepository.Update(transaction);
                 }
+                _unitOfWork.Save();
+                _unitOfWork.Dispose();
+                DialogResult = DialogResult.OK;
             }
+            else
+            {
+                RtlMessageBox.Show("لطفا نوع تراکنش را برگزینید");
+            }
+            //}
         }
     }
 }

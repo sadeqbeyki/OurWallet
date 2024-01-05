@@ -11,5 +11,7 @@ namespace Wallet.Domain.Interfaces.Base
         void Update(TEntity entity);
         void Delete(TEntity entity);
         void Delete(TKey Id);
+
+        TEntity GetEntityByCondition(Expression<Func<TEntity, bool>> condition);
     }
 }

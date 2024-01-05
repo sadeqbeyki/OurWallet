@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle10 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle11 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle12 = new DataGridViewCellStyle();
             groupBoxPerson = new GroupBox();
             txtAmount = new NumericUpDown();
             rbPay = new RadioButton();
@@ -46,6 +46,10 @@
             FirstName = new DataGridViewTextBoxColumn();
             txtFilter = new TextBox();
             btnSave = new Button();
+            label4 = new Label();
+            txtTransactionCategory = new TextBox();
+            txtAccountType = new TextBox();
+            label5 = new Label();
             groupBoxPerson.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)txtAmount).BeginInit();
             gbPerson.SuspendLayout();
@@ -54,6 +58,10 @@
             // 
             // groupBoxPerson
             // 
+            groupBoxPerson.Controls.Add(txtAccountType);
+            groupBoxPerson.Controls.Add(label5);
+            groupBoxPerson.Controls.Add(txtTransactionCategory);
+            groupBoxPerson.Controls.Add(label4);
             groupBoxPerson.Controls.Add(txtAmount);
             groupBoxPerson.Controls.Add(rbPay);
             groupBoxPerson.Controls.Add(rbReceive);
@@ -70,11 +78,11 @@
             groupBoxPerson.Size = new Size(558, 371);
             groupBoxPerson.TabIndex = 0;
             groupBoxPerson.TabStop = false;
-            groupBoxPerson.Text = "اطلاعات شخص";
+            groupBoxPerson.Text = "تراکنش";
             // 
             // txtAmount
             // 
-            txtAmount.Location = new Point(191, 119);
+            txtAmount.Location = new Point(191, 201);
             txtAmount.Name = "txtAmount";
             txtAmount.Size = new Size(259, 23);
             txtAmount.TabIndex = 13;
@@ -82,7 +90,7 @@
             // rbPay
             // 
             rbPay.AutoSize = true;
-            rbPay.Location = new Point(259, 73);
+            rbPay.Location = new Point(259, 155);
             rbPay.Name = "rbPay";
             rbPay.Size = new Size(60, 19);
             rbPay.TabIndex = 12;
@@ -93,7 +101,7 @@
             // rbReceive
             // 
             rbReceive.AutoSize = true;
-            rbReceive.Location = new Point(389, 73);
+            rbReceive.Location = new Point(389, 155);
             rbReceive.Name = "rbReceive";
             rbReceive.Size = new Size(61, 19);
             rbReceive.TabIndex = 11;
@@ -103,7 +111,7 @@
             // 
             // txtDescription
             // 
-            txtDescription.Location = new Point(191, 162);
+            txtDescription.Location = new Point(191, 244);
             txtDescription.Margin = new Padding(4, 3, 4, 3);
             txtDescription.Multiline = true;
             txtDescription.Name = "txtDescription";
@@ -112,16 +120,19 @@
             // 
             // txtName
             // 
+            txtName.Cursor = Cursors.IBeam;
+            txtName.Enabled = false;
             txtName.Location = new Point(191, 25);
             txtName.Margin = new Padding(4, 3, 4, 3);
             txtName.Name = "txtName";
+            txtName.ReadOnly = true;
             txtName.Size = new Size(259, 23);
             txtName.TabIndex = 7;
             // 
             // lblAddress
             // 
             lblAddress.AutoSize = true;
-            lblAddress.Location = new Point(514, 162);
+            lblAddress.Location = new Point(514, 244);
             lblAddress.Margin = new Padding(4, 0, 4, 0);
             lblAddress.Name = "lblAddress";
             lblAddress.Size = new Size(32, 15);
@@ -131,7 +142,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(516, 119);
+            label3.Location = new Point(516, 201);
             label3.Margin = new Padding(4, 0, 4, 0);
             label3.Name = "label3";
             label3.Size = new Size(32, 15);
@@ -141,7 +152,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(486, 75);
+            label2.Location = new Point(486, 157);
             label2.Margin = new Padding(4, 0, 4, 0);
             label2.Name = "label2";
             label2.Size = new Size(65, 15);
@@ -176,34 +187,34 @@
             dgvCustomers.AllowUserToAddRows = false;
             dgvCustomers.AllowUserToDeleteRows = false;
             dgvCustomers.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = SystemColors.Control;
-            dataGridViewCellStyle4.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle4.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle4.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.True;
-            dgvCustomers.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle10.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle10.BackColor = SystemColors.Control;
+            dataGridViewCellStyle10.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle10.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle10.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle10.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle10.WrapMode = DataGridViewTriState.True;
+            dgvCustomers.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
             dgvCustomers.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvCustomers.Columns.AddRange(new DataGridViewColumn[] { FirstName });
-            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = SystemColors.Window;
-            dataGridViewCellStyle5.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle5.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle5.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = DataGridViewTriState.False;
-            dgvCustomers.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle11.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle11.BackColor = SystemColors.Window;
+            dataGridViewCellStyle11.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle11.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle11.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle11.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle11.WrapMode = DataGridViewTriState.False;
+            dgvCustomers.DefaultCellStyle = dataGridViewCellStyle11;
             dgvCustomers.Location = new Point(5, 49);
             dgvCustomers.Name = "dgvCustomers";
-            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = SystemColors.Control;
-            dataGridViewCellStyle6.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle6.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle6.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = DataGridViewTriState.True;
-            dgvCustomers.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle12.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle12.BackColor = SystemColors.Control;
+            dataGridViewCellStyle12.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle12.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle12.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle12.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle12.WrapMode = DataGridViewTriState.True;
+            dgvCustomers.RowHeadersDefaultCellStyle = dataGridViewCellStyle12;
             dgvCustomers.Size = new Size(189, 316);
             dgvCustomers.TabIndex = 1;
             dgvCustomers.CellClick += dgvCustomers_CellClick;
@@ -233,6 +244,42 @@
             btnSave.Text = "ثبت";
             btnSave.UseVisualStyleBackColor = true;
             btnSave.Click += btnSave_Click;
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Location = new Point(489, 71);
+            label4.Name = "label4";
+            label4.Size = new Size(62, 15);
+            label4.TabIndex = 14;
+            label4.Text = "دسته بندی:";
+            // 
+            // txtTransactionCategory
+            // 
+            txtTransactionCategory.Enabled = false;
+            txtTransactionCategory.Location = new Point(191, 68);
+            txtTransactionCategory.Margin = new Padding(4, 3, 4, 3);
+            txtTransactionCategory.Name = "txtTransactionCategory";
+            txtTransactionCategory.Size = new Size(259, 23);
+            txtTransactionCategory.TabIndex = 15;
+            // 
+            // txtAccountType
+            // 
+            txtAccountType.Enabled = false;
+            txtAccountType.Location = new Point(191, 109);
+            txtAccountType.Margin = new Padding(4, 3, 4, 3);
+            txtAccountType.Name = "txtAccountType";
+            txtAccountType.Size = new Size(259, 23);
+            txtAccountType.TabIndex = 17;
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Location = new Point(489, 112);
+            label5.Name = "label5";
+            label5.Size = new Size(61, 15);
+            label5.TabIndex = 16;
+            label5.Text = "نوع حساب:";
             // 
             // frmAddTransaction
             // 
@@ -276,5 +323,9 @@
         private DataGridView dgvCustomers;
         private DataGridViewTextBoxColumn FirstName;
         private NumericUpDown txtAmount;
+        private TextBox txtTransactionCategory;
+        private Label label4;
+        private TextBox txtAccountType;
+        private Label label5;
     }
 }
