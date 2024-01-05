@@ -20,12 +20,12 @@ namespace Wallet.Persistance.Data
             _repositories = new Dictionary<Type, object>();
         }
 
-        private IRepository<Guid, Account> _accountRepository;
-        public IRepository<Guid, Account> accountRepository
+        private IAccountRepository _accountRepository;
+        public IAccountRepository AccountRepository
         {
             get
             {
-                _accountRepository ??= new Repository<Guid, Account>(_walletDbContext);
+                _accountRepository ??= new AccountRepository(_walletDbContext);
                 return _accountRepository;
             }
         }
@@ -67,12 +67,16 @@ namespace Wallet.Persistance.Data
             }
         }
 
-        private IRepository<int, TransactionCategory> _transactionCategoryRepository;
-        public IRepository<int, TransactionCategory> transactionCategoryRepository
+        private ITransactionCategoryRepository _transactionCategoryRepository;
+        public ITransactionCategoryRepository TransactionCategoryRepository
         {
             get
             {
-                _transactionCategoryRepository ??= new Repository<int, TransactionCategory>(_walletDbContext);
+                if (_transactionCategoryRepository == null)
+                {
+                    _transactionCategoryRepository = new TransactionCategoryRepository(_walletDbContext);
+
+                }
                 return _transactionCategoryRepository;
             }
         }

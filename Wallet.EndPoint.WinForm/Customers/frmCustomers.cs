@@ -1,9 +1,5 @@
 ﻿using Wallet.Application.Helpers;
-using Wallet.Domain.Entities;
 using Wallet.Domain.Interfaces;
-using Wallet.Domain.Interfaces.Base;
-using Wallet.Persistance.Common;
-using Wallet.Persistance.Data;
 
 namespace Wallet.EndPoint.WinForm.Customers
 {

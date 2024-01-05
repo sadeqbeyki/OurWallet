@@ -32,8 +32,8 @@ namespace Wallet.Service
             && a.CreatedAt >= startDate && a.CreatedAt <= endDate)
                 .Select(a => a.Amount).ToList();
 
-            rp.Recive = receive.Sum();
-            rp.Pay = pay.Sum();
+            rp.Income = receive.Sum();
+            rp.Expense = pay.Sum();
             rp.AccountBalance = (receive.Sum() - pay.Sum());
 
             return rp;

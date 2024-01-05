@@ -41,7 +41,7 @@
             gbMonthReport = new GroupBox();
             lblAccountBalance = new Label();
             lblExpense = new Label();
-            lblReceive = new Label();
+            lblIncome = new Label();
             label3 = new Label();
             label2 = new Label();
             label1 = new Label();
@@ -80,7 +80,7 @@
             // editLoginItem
             // 
             editLoginItem.Name = "editLoginItem";
-            editLoginItem.Size = new Size(180, 22);
+            editLoginItem.Size = new Size(142, 22);
             editLoginItem.Text = "تنظیمات ورود";
             editLoginItem.Click += editLoginItem_Click;
             // 
@@ -133,11 +133,11 @@
             // 
             gbMonthReport.Controls.Add(lblAccountBalance);
             gbMonthReport.Controls.Add(lblExpense);
-            gbMonthReport.Controls.Add(lblReceive);
+            gbMonthReport.Controls.Add(lblIncome);
             gbMonthReport.Controls.Add(label3);
             gbMonthReport.Controls.Add(label2);
             gbMonthReport.Controls.Add(label1);
-            gbMonthReport.Location = new Point(375, 77);
+            gbMonthReport.Location = new Point(12, 95);
             gbMonthReport.Name = "gbMonthReport";
             gbMonthReport.Size = new Size(397, 173);
             gbMonthReport.TabIndex = 2;
@@ -160,13 +160,13 @@
             lblExpense.TabIndex = 4;
             lblExpense.Text = "0";
             // 
-            // lblReceive
+            // lblIncome
             // 
-            lblReceive.Location = new Point(6, 50);
-            lblReceive.Name = "lblReceive";
-            lblReceive.Size = new Size(286, 23);
-            lblReceive.TabIndex = 3;
-            lblReceive.Text = "0";
+            lblIncome.Location = new Point(6, 50);
+            lblIncome.Name = "lblIncome";
+            lblIncome.Size = new Size(286, 23);
+            lblIncome.TabIndex = 3;
+            lblIncome.Text = "0";
             // 
             // label3
             // 
@@ -197,7 +197,7 @@
             // 
             // btnRefresh
             // 
-            btnRefresh.Location = new Point(375, 293);
+            btnRefresh.Location = new Point(334, 274);
             btnRefresh.Name = "btnRefresh";
             btnRefresh.Size = new Size(75, 23);
             btnRefresh.TabIndex = 6;
@@ -234,11 +234,12 @@
             // 
             // pictureBox1
             // 
-            pictureBox1.Image = Properties.Resources.narcissusDaffodilFlower;
-            pictureBox1.Location = new Point(12, 28);
+            pictureBox1.ErrorImage = Properties.Resources.narcissusDaffodilFlower1;
+            pictureBox1.Image = Properties.Resources.narcissusDaffodilFlower1;
+            pictureBox1.Location = new Point(450, 25);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(334, 288);
-            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox1.SizeMode = PictureBoxSizeMode.CenterImage;
             pictureBox1.TabIndex = 8;
             pictureBox1.TabStop = false;
             // 
@@ -256,6 +257,7 @@
             FormBorderStyle = FormBorderStyle.FixedToolWindow;
             Name = "frmMain";
             RightToLeft = RightToLeft.Yes;
+            RightToLeftLayout = true;
             StartPosition = FormStartPosition.CenterScreen;
             Text = "حسابداری";
             Load += frmMain_Load;
@@ -287,7 +289,7 @@
         private Label label2;
         private Label label1;
         private Label lblExpense;
-        private Label lblReceive;
+        private Label lblIncome;
         private Label lblAccountBalance;
         private Button btnRefresh;
         private StatusStrip statusStrip1;

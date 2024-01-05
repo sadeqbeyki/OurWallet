@@ -1,18 +1,18 @@
-﻿using Wallet.Domain.Entities;
+﻿using Wallet.Domain.Dtos;
+using Wallet.Domain.Entities;
 
-namespace Wallet.Domain.Interfaces
+namespace Wallet.Domain.Interfaces;
+
+public interface ICustomerRepository
 {
-    public interface ICustomerRepository
-    {
-        bool DeleteCustomer(Guid customerId);
-        bool DeleteCustomer(Customer customer);
-        List<Customer> GetAllCustomers();
-        Guid GetCustomerIdByName(string name);
-        string GetCustomerNameById(Guid customerId);
-        IEnumerable<Customer> GetCustomerByFilter(string parameter);
-        Customer GetCustomerById(Guid customerId);
-        List<Customer> GetNameCustomer(string filter = "");
-        bool InsertCustomer(Customer customer);
-        bool UpdateCustomer(Customer customer);
-    }
+    bool DeleteCustomer(Guid customerId);
+    bool DeleteCustomer(Customer customer);
+    List<Customer> GetAllCustomers();
+    Task<Guid> GetCustomerIdByName(string name);
+    string GetCustomerNameById(Guid customerId);
+    IEnumerable<Customer> GetCustomerByFilter(string parameter);
+    Customer GetCustomerById(Guid customerId);
+    Task<List<CustomerDto>> GetNameCustomer(string filter = "");
+    bool InsertCustomer(Customer customer);
+    bool UpdateCustomer(Customer customer);
 }

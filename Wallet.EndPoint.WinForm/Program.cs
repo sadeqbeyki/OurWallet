@@ -29,6 +29,7 @@ namespace Wallet.EndPoint.WinForm
                 // Add your forms or services here
                 .AddScoped<IUnitOfWork, UnitOfWork>()
                 .AddScoped<ICustomerRepository, CustomerRepository>()
+                .AddScoped<WalletDbContext>()
                 .AddDbContext<WalletDbContext>(options =>
                     options.UseSqlServer("DefaultConnection"))
                 .BuildServiceProvider();
@@ -36,8 +37,13 @@ namespace Wallet.EndPoint.WinForm
             var mainForm = serviceProvider.GetRequiredService<frmMain>();
             System.Windows.Forms.Application.Run(mainForm);
 
-            var frmCustomers = serviceProvider.GetRequiredService<frmCustomers>();
-            System.Windows.Forms.Application.Run(frmCustomers);
+            //var frmCustomers = serviceProvider.GetRequiredService<frmCustomers>();
+
+            //frmCustomers.Owner = mainForm;
+            //frmCustomers.Show();
+
+            //System.Windows.Forms.Application.Run(frmCustomers);
+
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             //ApplicationConfiguration.Initialize();

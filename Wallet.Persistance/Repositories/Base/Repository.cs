@@ -1,5 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Query.SqlExpressions;
 using System.Linq.Expressions;
+using Wallet.Domain.Entities;
 using Wallet.Domain.Entities.Base;
 using Wallet.Domain.Interfaces.Base;
 
@@ -25,23 +27,19 @@ namespace Wallet.Persistance.Repositories.Base
             }
             return query.ToList();
         }
-
         public virtual TEntity GetById(TKey Id)
         {
             return _dbset.Find(Id);
         }
-
         public virtual void Insert(TEntity entity)
         {
             _dbset.Add(entity);
         }
-
         public virtual void Update(TEntity entity)
         {
             _dbset.Attach(entity);
             _dbContext.Entry(entity).State = EntityState.Modified;
         }
-
         public virtual void Delete(TEntity entity)
         {
             if (_dbContext.Entry(entity).State == EntityState.Detached)
@@ -55,10 +53,10 @@ namespace Wallet.Persistance.Repositories.Base
             var entity = GetById(Id);
             Delete(entity);
         }
-
         public TEntity GetEntityByCondition(Expression<Func<TEntity, bool>> condition)
         {
             return _dbset.FirstOrDefault(condition);
         }
+
     }
 }

@@ -1,4 +1,5 @@
 using Wallet.Application.DTOs;
+using Wallet.Application.Helpers;
 using Wallet.Domain.Interfaces;
 using Wallet.EndPoint.WinForm.Customers;
 using Wallet.EndPoint.WinForm.Transaction;
@@ -40,19 +41,18 @@ namespace Wallet.EndPoint.WinForm
 
         private void frmMain_Load(object sender, EventArgs e)
         {
-            this.Show();
             //this.Hide();
             //frmLogin frmLogin = new frmLogin();
             //if (frmLogin.ShowDialog() == DialogResult.OK)
             //{
-            //    lblDate.Text = DateConvertor.ToShamsi(DateTime.Now);
-            //    lblTime.Text = DateTime.Now.ToString("HH:mm:ss");
-            //    this.Show();
-            //    Report();
+                lblDate.Text = DateConvertor.ToShamsi(DateTime.Now);
+                lblTime.Text = DateTime.Now.ToString("HH:mm:ss");
+                this.Show();
+                Report();
             //}
             //else
             //{
-            //    Application.Exit();
+            //    System.Windows.Forms.Application.Exit();
             //}
         }
 
@@ -60,8 +60,8 @@ namespace Wallet.EndPoint.WinForm
         {
             AccountReport accountReport = new(_unitOfWork);
             ReportViewModel report = accountReport.ReportFromMain();
-            lblExpense.Text = report.Pay.ToString("#,0");
-            lblReceive.Text = report.Recive.ToString("#,0");
+            lblExpense.Text = report.Expense.ToString("#,0");
+            lblIncome.Text = report.Income.ToString("#,0");
             lblAccountBalance.Text = report.AccountBalance.ToString("0,#");
         }
         private void timer1_Tick(object sender, EventArgs e)

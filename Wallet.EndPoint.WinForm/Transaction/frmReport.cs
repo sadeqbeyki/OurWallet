@@ -1,5 +1,6 @@
 ﻿using System.Data;
 using Wallet.Application.Helpers;
+using Wallet.Domain.Dtos;
 using Wallet.Domain.Entities;
 using Wallet.Domain.Interfaces;
 using Wallet.EndPoint.WinForm.Customers;
@@ -19,18 +20,29 @@ namespace Wallet.EndPoint.WinForm.Transaction
             _unitOfWork = unitOfWork;
         }
 
-        private void frmReport_Load(object sender, EventArgs e)
+        private async Task<List<CustomerDto>> GetCustomerListAsync()
         {
-            List<Customer> list = new List<Customer>();
-            list.Add(new Customer
-            {
-                Id = Guid.Empty,
-                FirstName = "انتخاب کنید"
-            });
-            list.AddRange(_unitOfWork.CustomerRepository.GetNameCustomer());
+            List<CustomerDto> list = new List<CustomerDto>
+                {
+                    new CustomerDto
+                    {
+                        Id = Guid.Empty,
+                        FirstName = "انتخاب کنید"
+                    }
+                };
+
+            // اضافه کردن موارد به لیست
+            list.AddRange(await _unitOfWork.CustomerRepository.GetNameCustomer());
+
+            return list;
+        }
+        private async void frmReport_Load(object sender, EventArgs e)
+        {
+            List<CustomerDto> list = await GetCustomerListAsync();
+
             cbCustomer.DataSource = list;
-            cbCustomer.DisplayMember = "FullName";
-            cbCustomer.ValueMember = "CustomerID";
+            cbCustomer.DisplayMember = "FirstName";
+            cbCustomer.ValueMember = "Id";
 
             if (TypeId == 1)
             {
@@ -49,13 +61,13 @@ namespace Wallet.EndPoint.WinForm.Transaction
 
         void Filter()
         {
-            List<Wallet.Domain.Entities.Transaction> result = new List<Wallet.Domain.Entities.Transaction>();
-            // "?" mean is = Can Be Null
+            List<Wallet.Domain.Entities.Transaction> result = new();
+
             DateTime? startDate;
             DateTime? endDate;
-            if ((int)cbCustomer.SelectedValue != 0)
+            if ((Guid)cbCustomer.SelectedValue != Guid.Empty)
             {
-                Guid customerId = Guid.Parse(cbCustomer.SelectedValue.ToString());
+                Guid customerId = (Guid)cbCustomer.SelectedValue;
                 result.AddRange(_unitOfWork.transactionRepository.Get(a => a.TypeId == TypeId && a.CustomerId == customerId));
             }
             else

@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Wallet.Domain.Dtos;
 using Wallet.Domain.Entities;
 using Wallet.Domain.Interfaces;
 using Wallet.Persistance.Common;
@@ -76,36 +77,45 @@ namespace Wallet.Persistance.Repositories
         public IEnumerable<Customer> GetCustomerByFilter(string parameter)
         {
             return _dbContext.Customers
-                .Where(c => c.FirstName.Contains(parameter) 
-                || c.Email.Contains(parameter) 
+                .Where(c => c.FirstName.Contains(parameter)
+                || c.Email.Contains(parameter)
                 || c.Mobile.Contains(parameter)
                 || c.LastName.Contains(parameter)).ToList();
         }
-        public List<Customer> GetNameCustomer(string filter = "")
+
+        public async Task<Guid> GetCustomerIdByName(string name)
         {
-            if (filter == "")
+            var customer = await _dbContext.Customers.FirstOrDefaultAsync(c => c.FirstName == name);
+            if (customer != null)
             {
-                return _dbContext.Customers.Select(c => new Customer()
-                {
-                    Id = c.Id,
-                    FirstName = c.FirstName,
-                    LastName = c.LastName,
-                }).ToList();
+                return customer.Id;
             }
-            return _dbContext.Customers.Where(c => c.FirstName.Contains(filter)).Select(c => new Customer()
-            {
-                Id = c.Id,
-                FirstName = c.FirstName,
-            }).ToList();
-        }
-        public Guid GetCustomerIdByName(string name)
-        {
-            return _dbContext.Customers.First(c => c.FirstName == name).Id;
+            throw new InvalidOperationException($"No customer found with the name '{name}'.");
         }
         public string GetCustomerNameById(Guid customerId)
         {
             return _dbContext.Customers.Find(customerId).FirstName ??
                 throw new Exception("Not Found! ");
+        }
+
+        public async Task<List<CustomerDto>> GetNameCustomer(string filter = "")
+        {
+            if (filter == "")
+            {
+                return await _dbContext.Customers.Select(c => new CustomerDto()
+                {
+                    Id = c.Id,
+                    FirstName = c.FirstName,
+                }).ToListAsync();
+            }
+
+            return await _dbContext.Customers
+                .Where(c => c.FirstName.Contains(filter))
+                .Select(c => new CustomerDto()
+                {
+                    Id = c.Id,
+                    FirstName = c.FirstName,
+                }).ToListAsync();
         }
     }
 }

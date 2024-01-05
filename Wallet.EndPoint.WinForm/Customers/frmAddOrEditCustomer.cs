@@ -73,7 +73,7 @@ namespace Wallet.EndPoint.WinForm.Customers
             if (customerId != Guid.Empty)
             {
                 this.Text = "ویرایش شخص";
-                btnSave.Text = "ویرایش";
+                btnSave.Text = "ذخیره";
                 var customer = _unitOfWork.CustomerRepository.GetCustomerById(customerId);
                 txtName.Text = customer.FirstName;
                 txtLastName.Text = customer.LastName;
