@@ -1,11 +1,8 @@
 ﻿using System.Data;
 using Wallet.Application.Helpers;
 using Wallet.Domain.Dtos;
-using Wallet.Domain.Entities;
 using Wallet.Domain.Interfaces;
 using Wallet.EndPoint.WinForm.Customers;
-using Wallet.Persistance.Common;
-using Wallet.Persistance.Data;
 
 namespace Wallet.EndPoint.WinForm.Transaction
 {
@@ -18,6 +15,11 @@ namespace Wallet.EndPoint.WinForm.Transaction
         {
             InitializeComponent();
             _unitOfWork = unitOfWork;
+
+            cbCustomer.TabIndex = 1;
+            txtFromDate.TabIndex = 2;
+            txtToDate.TabIndex = 3;
+            btnFilter.TabIndex = 4;
         }
 
         private async Task<List<CustomerDto>> GetCustomerListAsync()

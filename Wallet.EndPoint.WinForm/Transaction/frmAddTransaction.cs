@@ -1,5 +1,4 @@
 ﻿using Wallet.Application.Helpers;
-using Wallet.Domain.Entities;
 using Wallet.Domain.Interfaces;
 
 namespace Wallet.EndPoint.WinForm.Customers
@@ -17,8 +16,8 @@ namespace Wallet.EndPoint.WinForm.Customers
             txtFilter.TabIndex = 1;
             txtTransactionCategory.TabIndex = 2;
             txtAccountType.TabIndex = 3;
-            rbReceive.TabIndex = 4;
-            rbPay.TabIndex = 5;
+            rbIncome.TabIndex = 4;
+            rbExpense.TabIndex = 5;
             txtAmount.TabIndex = 6;
             txtDescription.TabIndex = 7;
             btnSave.TabIndex = 8;
@@ -43,18 +42,17 @@ namespace Wallet.EndPoint.WinForm.Customers
                 txtName.Text = _unitOfWork.CustomerRepository.GetCustomerNameById(account.CustomerId);
                 if (account.TypeId == 1)
                 {
-                    rbReceive.Checked = true;
+                    rbIncome.Checked = true;
                 }
                 else
                 {
-                    rbPay.Checked = true;
+                    rbExpense.Checked = true;
                 }
                 this.Text = "ویرایش";
                 btnSave.Text = "ویرایش";
                 _unitOfWork.Dispose();
             }
         }
-
         private async void txtFilter_TextChanged(object sender, EventArgs e)
         {
             dgvCustomers.AutoGenerateColumns = false;
@@ -65,13 +63,11 @@ namespace Wallet.EndPoint.WinForm.Customers
             dgvCategory.AutoGenerateColumns = false;
             dgvCategory.DataSource = _unitOfWork.TransactionCategoryRepository.GetCategoryName(txtTransactionCategory.Text);
         }
-
         private void txtAccountType_TextChanged(object sender, EventArgs e)
         {
             dgvAccount.AutoGenerateColumns = false;
             dgvAccount.DataSource = _unitOfWork.AccountRepository.GetAccountName(txtAccountType.Text);
         }
-
         private void dgvCustomers_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             txtName.Text = dgvCustomers.CurrentRow.Cells[0].Value.ToString();
@@ -84,12 +80,11 @@ namespace Wallet.EndPoint.WinForm.Customers
         {
             txtTransactionCategory.Text = dgvCategory.CurrentRow.Cells[0].Value.ToString();
         }
-
         private async void btnSave_Click(object sender, EventArgs e)
         {
             //if (BaseValidator.IsFormValid(this.components))
             //{
-            if (rbPay.Checked || rbReceive.Checked)
+            if (rbExpense.Checked || rbIncome.Checked)
             {
                 Wallet.Domain.Entities.Transaction transaction = new()
                 {
@@ -101,7 +96,7 @@ namespace Wallet.EndPoint.WinForm.Customers
                     AccountId = _unitOfWork.AccountRepository
                         .GetAccountIdByName(txtAccountType.Text),
 
-                    TypeId = (rbReceive.Checked) ? 1 : 2,
+                    TypeId = (rbIncome.Checked) ? 1 : 2,
                     Amount = int.Parse(txtAmount.Value.ToString()),
                     CreatedAt = DateTime.Now,
                     Description = txtDescription.Text
